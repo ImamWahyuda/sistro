@@ -35,14 +35,12 @@ class LoginPageState extends State<login> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: const [
-                        // #signup_text
-
-                        SizedBox(
-                          height: 5,
-                        ),
-
-                        // #welcome
+                      children: <Widget>[
+                        Image.asset(
+                          'images/logosistro.png',
+                          width: 222,
+                          height: 67,
+                        )
                       ],
                     ),
                   )),
@@ -62,35 +60,34 @@ class LoginPageState extends State<login> {
                         textAlign: TextAlign.left,
                         style: TextStyle(color: Colors.black, fontSize: 32.5),
                       ),
-                      const SizedBox(
-                        height: 60,
-                      ),
 
-                      // #text_field
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 30),
                         height: MediaQuery.of(context).size.height * 0.3,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.shade300,
-                                  blurRadius: 20,
-                                  spreadRadius: 10,
-                                  offset: const Offset(0, 10))
-                            ]),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
                             TextField(
                               decoration: InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.symmetric(horizontal: 10),
-                                  border: InputBorder.none,
-                                  hintText: "Username",
-                                  hintStyle: TextStyle(color: Colors.grey)),
+                                  border: OutlineInputBorder(),
+                                  labelText: 'User Name',
+                                  hintText: 'Enter valid email'),
+                            ),
+                            Divider(
+                              thickness: 0.5,
+                              height: 10,
+                            ),
+                            TextField(
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  labelText: 'Password',
+                                  hintText: 'Enter your secure password'),
                             ),
                             Divider(
                               thickness: 0.5,
@@ -98,31 +95,17 @@ class LoginPageState extends State<login> {
                             ),
                             TextField(
                               decoration: InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.symmetric(horizontal: 10),
-                                  border: InputBorder.none,
-                                  hintText: "Password",
-                                  hintStyle: TextStyle(color: Colors.grey)),
-                            ),
-                            Divider(
-                              thickness: 0.5,
-                              height: 10,
-                            ),
-                            TextField(
-                              decoration: InputDecoration(
-                                  contentPadding:
-                                      EdgeInsets.symmetric(horizontal: 10),
-                                  border: InputBorder.none,
-                                  hintText: "Company / Plant",
-                                  hintStyle: TextStyle(color: Colors.grey)),
+                                border: OutlineInputBorder(),
+                                labelText: 'Company / Plant',
+                              ),
                             ),
                           ],
                         ),
                       ),
-                      const SizedBox(
-                        height: 35,
+                      Divider(
+                        thickness: 0.5,
+                        height: 10,
                       ),
-
                       // #signup_button
                       MaterialButton(
                         onPressed: () {},
@@ -138,13 +121,15 @@ class LoginPageState extends State<login> {
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                      const SizedBox(
-                        height: 30,
+                      Divider(
+                        thickness: 0.5,
+                        height: 120,
                       ),
-
-                      const SizedBox(
-                        height: 30,
-                      ),
+                      Image.asset(
+                        'images/4logo.png',
+                        width: 368,
+                        height: 56,
+                      )
                     ],
                   ),
                 ),
