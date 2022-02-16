@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 
 class login extends StatefulWidget {
   static const String id = "sign_up_page";
@@ -57,8 +58,11 @@ class LoginPageState extends State<login> {
                     children: [
                       const Text(
                         "Login",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(color: Colors.black, fontSize: 32.5),
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 32.5),
                       ),
 
                       Container(
@@ -123,7 +127,7 @@ class LoginPageState extends State<login> {
                       ),
                       Divider(
                         thickness: 0.5,
-                        height: 120,
+                        height: 130,
                       ),
                       Image.asset(
                         'images/4logo.png',
