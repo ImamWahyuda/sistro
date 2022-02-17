@@ -10,7 +10,7 @@ class SplashScreenPage extends StatelessWidget {
     return new SplashScreen(
       backgroundColor: Color.fromRGBO(3, 136, 53, 1),
       seconds: 5, //mengatur waktu
-      navigateAfterSeconds: HomePage(),
+      navigateAfterSeconds: login(),
       image: Image.asset('images/logosistro.png'),
       photoSize: 150.0,
     );

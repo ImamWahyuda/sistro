@@ -11,12 +11,13 @@ class HomePage extends StatelessWidget {
           width: 85,
           height: 26,
         ),
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
+            icon: Icon(Icons.logout),
             onPressed: () {
               showAlertDialog(context);
             },
-            icon: Icon(Icons.logout),
           ),
         ],
       ),

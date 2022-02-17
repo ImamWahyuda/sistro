@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:sistro_app/screen/homepage.dart';
 
 class login extends StatefulWidget {
   static const String id = "sign_up_page";
@@ -111,8 +112,13 @@ class LoginPageState extends State<login> {
                         height: 10,
                       ),
                       // #signup_button
+
+                      //Kurang autentifikasi cek api
                       MaterialButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => HomePage()));
+                        },
                         height: 45,
                         minWidth: 240,
                         shape: const StadiumBorder(),
