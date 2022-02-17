@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sistro_app/screen/splashscreen.dart';
 import 'package:sistro_app/screen/login.dart';
+import 'package:sistro_app/screen/homepage.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Membuat SplashScreen',
       debugShowCheckedModeBanner: false,
-      home: SplashScreenPage(),
+      home: HomePage(),
     );
   }
 }
