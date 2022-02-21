@@ -3,7 +3,7 @@
    <application
         android:label="SISTRO"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/sistrolog">
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -131,15 +131,6 @@ class LoginPageState extends State<login> {
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                      Divider(
-                        thickness: 0.5,
-                        height: 130,
-                      ),
-                      Image.asset(
-                        'images/4logo.png',
-                        width: 368,
-                        height: 56,
-                      )
                     ],
                   ),
                 ),
