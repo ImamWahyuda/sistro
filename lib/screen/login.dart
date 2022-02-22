@@ -11,6 +11,8 @@ class login extends StatefulWidget {
 }
 
 class LoginPageState extends State<login> {
+  bool passenable = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,63 +59,77 @@ class LoginPageState extends State<login> {
                           topRight: Radius.circular(15))),
                   child: Column(
                     children: [
-                      const Text(
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
                         "Login",
-                        textAlign: TextAlign.right,
+                        textAlign: TextAlign.left,
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
                             fontSize: 32.5),
                       ),
-
+                      SizedBox(
+                        height: 30,
+                      ),
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 30),
-                        height: MediaQuery.of(context).size.height * 0.3,
+                        height: MediaQuery.of(context).size.height * 0.5,
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            TextField(
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: 'User Name',
-                                  hintText: 'Enter valid email'),
-                            ),
-                            Divider(
-                              thickness: 0.5,
-                              height: 10,
-                            ),
-                            TextField(
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  labelText: 'Password',
-                                  hintText: 'Enter your secure password'),
-                            ),
-                            Divider(
-                              thickness: 0.5,
-                              height: 10,
-                            ),
-                            TextField(
-                              decoration: InputDecoration(
+                        child: Column(children: [
+                          TextField(
+                            decoration: InputDecoration(
                                 border: OutlineInputBorder(),
-                                labelText: 'Company / Plant',
-                              ),
+                                labelText: 'User Name',
+                                hintText: 'Enter valid email'),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextField(
+                            obscureText: passenable,
+                            decoration: InputDecoration(
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 5, horizontal: 20),
+                                border: OutlineInputBorder(),
+                                labelText: 'Password',
+                                hintText: 'Enter your secure password',
+                                suffix: IconButton(
+                                    onPressed: () {
+                                      //add Icon button at end of TextField
+                                      setState(() {
+                                        //refresh UI
+                                        if (passenable) {
+                                          //if passenable == true, make it false
+                                          passenable = false;
+                                        } else {
+                                          passenable =
+                                              true; //if passenable == false, make it true
+                                        }
+                                      });
+                                    },
+                                    icon: Icon(passenable == true
+                                        ? Icons.remove_red_eye
+                                        : Icons.password))
+                                //eye icon if passenable = true, else, Icon is ***__
+                                ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          TextField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              labelText: 'Company / Plant',
                             ),
-                          ],
-                        ),
+                          ),
+                        ]),
                       ),
-                      Divider(
-                        thickness: 0.5,
-                        height: 10,
-                      ),
-                      // #signup_button
-
-                      //Kurang autentifikasi cek api
                       MaterialButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
