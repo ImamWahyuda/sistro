@@ -102,6 +102,7 @@ class LoginPageState extends State<login> {
                                 labelText: 'Password',
                                 hintText: 'Enter your secure password',
                                 suffixIcon: IconButton(
+                                   color: Colors.black87,
                                     onPressed: () {
                                       //add Icon button at end of TextField
                                       setState(() {
@@ -130,12 +131,16 @@ class LoginPageState extends State<login> {
                               border: OutlineInputBorder(),
                               labelText: 'Company',
                             ),
-                            icon: const Icon(Icons.arrow_downward),
+                            icon: const Icon(
+                              Icons.arrow_downward,
+                              color: Colors.black87
+                            ),
                             elevation: 16,
                             isExpanded: true,
                             iconSize: 20.0,
                             style: const TextStyle(
-                              color: Colors.black54,
+                              color: Colors.black87,
+                              fontSize: 16
                             ),
                             onChanged: (String? newValue) {
                               setState(() {
