@@ -12,6 +12,7 @@ class login extends StatefulWidget {
 
 class LoginPageState extends State<login> {
   bool passenable = true;
+  String dropdownValue = '';
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +86,7 @@ class LoginPageState extends State<login> {
                           TextField(
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
+                                contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                                 labelText: 'User Name',
                                 hintText: 'Enter valid email'),
                           ),
@@ -95,7 +97,7 @@ class LoginPageState extends State<login> {
                             obscureText: passenable,
                             decoration: InputDecoration(
                                 contentPadding: EdgeInsets.symmetric(
-                                    vertical: 5, horizontal: 20),
+                                    vertical: 5, horizontal: 10),
                                 border: OutlineInputBorder(),
                                 labelText: 'Password',
                                 hintText: 'Enter your secure password',
@@ -122,11 +124,29 @@ class LoginPageState extends State<login> {
                           SizedBox(
                             height: 10,
                           ),
-                          TextField(
+                          DropdownButtonFormField<String>(
                             decoration: InputDecoration(
+                              contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                               border: OutlineInputBorder(),
-                              labelText: 'Company / Plant',
+                              labelText: 'Company',
                             ),
+                            icon: const Icon(Icons.arrow_downward),
+                            elevation: 16,
+                            isExpanded: true,
+                            iconSize: 20.0,
+                            style: const TextStyle(color: Colors.black),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownValue = newValue!;
+                              });
+                            },
+                            items: <String>['Transportir']
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
                           ),
                         ]),
                       ),
