@@ -87,7 +87,7 @@ class LoginPageState extends State<login> {
                             decoration: InputDecoration(
                                 border: OutlineInputBorder(),
                                 contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                                labelText: 'User Name',
+                                labelText: 'Username',
                                 hintText: 'Enter valid email'),
                           ),
                           SizedBox(
@@ -101,7 +101,7 @@ class LoginPageState extends State<login> {
                                 border: OutlineInputBorder(),
                                 labelText: 'Password',
                                 hintText: 'Enter your secure password',
-                                suffix: IconButton(
+                                suffixIcon: IconButton(
                                     onPressed: () {
                                       //add Icon button at end of TextField
                                       setState(() {
@@ -134,7 +134,9 @@ class LoginPageState extends State<login> {
                             elevation: 16,
                             isExpanded: true,
                             iconSize: 20.0,
-                            style: const TextStyle(color: Colors.black),
+                            style: const TextStyle(
+                              color: Colors.black54,
+                            ),
                             onChanged: (String? newValue) {
                               setState(() {
                                 dropdownValue = newValue!;
