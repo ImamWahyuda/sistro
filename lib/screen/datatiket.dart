@@ -24,18 +24,61 @@ class _datatiketState extends State<datatiket>
     super.dispose();
   }
 
-  final List cards = new List.generate(20, (i) => new CustomCard()).toList();
+  List<Widget> cards = new List.generate(20, (i) => new CustomCard()).toList();
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(
-          title: new Text('My First App'),
-          backgroundColor: new Color(0xFF673AB7),
+    return MaterialApp(
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("Data Tiket"),
+            centerTitle: true,
+            backgroundColor: Colors.green.shade900,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () => {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => HomePage()))
+              },
+            ),
+            bottom: TabBar(
+              controller: controller,
+              tabs: [
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text("Status Tiket", style: TextStyle(fontSize: 15.0)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text("Riwayat", style: TextStyle(fontSize: 15.0)),
+                ),
+              ],
+            ),
+          ),
+          body: TabBarView(
+            controller: controller,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(top: 10.0),
+                child: Card(
+                  color: Colors.yellow,
+                  elevation: 8,
+                  shape: BeveledRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  margin: EdgeInsets.all(20),
+                  shadowColor: Colors.green,
+                ),
+              ),
+              Container(
+                  child: new ListView(
+                children: cards,
+              )),
+            ],
+          ),
         ),
-        body: new Container(
-            child: new ListView(
-          children: cards,
-        )));
+      ),
+    );
   }
 }
 
@@ -45,34 +88,27 @@ class CustomCard extends StatelessWidget {
     return new Card(
       child: new Column(
         children: <Widget>[
-          new Image.network(
-              'https://i.ytimg.com/vi/fq4N0hgOWzU/maxresdefault.jpg'),
           new Padding(
-              padding: new EdgeInsets.all(7.0),
-              child: new Row(
-                children: <Widget>[
-                  new Padding(
-                    padding: new EdgeInsets.all(7.0),
-                    child: new Icon(Icons.thumb_up),
-                  ),
-                  new Padding(
-                    padding: new EdgeInsets.all(7.0),
-                    child: new Text(
-                      'Like',
-                      style: new TextStyle(fontSize: 18.0),
-                    ),
-                  ),
-                  new Padding(
-                    padding: new EdgeInsets.all(7.0),
-                    child: new Icon(Icons.comment),
-                  ),
-                  new Padding(
-                    padding: new EdgeInsets.all(7.0),
-                    child: new Text('Comments',
-                        style: new TextStyle(fontSize: 18.0)),
-                  )
-                ],
-              ))
+            padding: new EdgeInsets.all(7.0),
+            child: new Row(
+              children: <Widget>[
+                Text(
+                  "SISTRO_RJ_UQJ1Km2Fq \n\n23 Februari 2022 | 12:21:35",
+                  style: TextStyle(
+                      letterSpacing: 1.0,
+                      fontWeight: FontWeight.bold // default is 0.0
+                      ),
+                ),
+                Text(
+                  "        SIPANDA \n\n        AD 8973 DC",
+                  style: TextStyle(
+                      letterSpacing: 1.0,
+                      fontWeight: FontWeight.bold // default is 0.0
+                      ),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
