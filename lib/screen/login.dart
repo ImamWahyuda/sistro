@@ -85,10 +85,12 @@ class LoginPageState extends State<login> {
                         child: Column(children: [
                           TextField(
                             decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                                labelText: 'Username',
-                                hintText: 'Enter valid email'),
+                              border: OutlineInputBorder(),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 5, horizontal: 10),
+                              labelText: 'Username',
+                              hintText: 'Enter Username',
+                            ),
                           ),
                           SizedBox(
                             height: 10,
@@ -102,7 +104,7 @@ class LoginPageState extends State<login> {
                                 labelText: 'Password',
                                 hintText: 'Enter your secure password',
                                 suffixIcon: IconButton(
-                                   color: Colors.black87,
+                                    color: Colors.black87,
                                     onPressed: () {
                                       //add Icon button at end of TextField
                                       setState(() {
@@ -127,21 +129,18 @@ class LoginPageState extends State<login> {
                           ),
                           DropdownButtonFormField<String>(
                             decoration: InputDecoration(
-                              contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 5, horizontal: 10),
                               border: OutlineInputBorder(),
                               labelText: 'Company',
                             ),
-                            icon: const Icon(
-                              Icons.arrow_downward,
-                              color: Colors.black87
-                            ),
+                            icon: const Icon(Icons.arrow_downward,
+                                color: Colors.black87),
                             elevation: 16,
                             isExpanded: true,
                             iconSize: 20.0,
                             style: const TextStyle(
-                              color: Colors.black87,
-                              fontSize: 16
-                            ),
+                                color: Colors.black87, fontSize: 16),
                             onChanged: (String? newValue) {
                               setState(() {
                                 dropdownValue = newValue!;

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sistro_app/screen/homescreen.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:sistro_app/screen/login.dart';
 import 'package:sistro_app/screen/homepage.dart';

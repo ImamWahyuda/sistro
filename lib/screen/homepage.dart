@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sistro_app/screen/datatiket.dart';
 import 'package:sistro_app/screen/login.dart';
+import 'package:sistro_app/screen/datatiket.dart';
+import 'package:sistro_app/screen/tiketbaru.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -63,8 +66,8 @@ class HomePage extends StatelessWidget {
             left: 17,
             child: new InkWell(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => login())); //ganti
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => tiketbaru())); //ganti
                 },
                 child: Container(
                     width: 183,
@@ -94,8 +97,8 @@ class HomePage extends StatelessWidget {
             left: 211,
             child: new InkWell(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => login())); //ganti
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => datatiket())); //ganti
                 },
                 child: Container(
                     width: 183,
@@ -125,8 +128,8 @@ class HomePage extends StatelessWidget {
             left: 59,
             child: new InkWell(
               onTap: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => login())); //ganti
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => tiketbaru())); //ganti
               },
               child: Container(
                   width: 100,
@@ -169,8 +172,8 @@ class HomePage extends StatelessWidget {
             left: 262,
             child: new InkWell(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => login())); //ganti
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => datatiket())); //ganti
                 },
                 child: Container(
                     width: 80,
