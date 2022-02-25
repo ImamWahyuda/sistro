@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sistro_app/screen/cetak.dart';
 import 'package:sistro_app/screen/homepage.dart';
 
 class datatiket extends StatefulWidget {
@@ -186,14 +187,16 @@ class CustomCard extends StatelessWidget {
                               height: 30,
                               child: Stack(children: <Widget>[
                                 Positioned(
-                                  top: 3,
-                                  left: 30,
+                                  top: 1,
+                                  left: 20,
+                                  right: 3,
+                                  bottom: 2,
                                   child: MaterialButton(
                                     onPressed: () {
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  HomePage()));
+                                                  CetakTiket()));
                                     },
                                     height: 33,
                                     minWidth: 100,
@@ -203,7 +206,7 @@ class CustomCard extends StatelessWidget {
                                       "Print",
                                       style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 14,
+                                          fontSize: 12,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
