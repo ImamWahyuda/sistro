@@ -25,6 +25,9 @@ class _datatiketState extends State<datatiket>
   }
 
   List<Widget> cards = new List.generate(20, (i) => new CustomCard()).toList();
+  List<Widget> cards2 =
+      new List.generate(20, (i) => new CustomCard2()).toList();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -59,20 +62,14 @@ class _datatiketState extends State<datatiket>
           body: TabBarView(
             controller: controller,
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(top: 10.0),
-                child: Card(
-                  color: Colors.yellow,
-                  elevation: 8,
-                  shape: BeveledRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: EdgeInsets.all(20),
-                  shadowColor: Colors.green,
-                ),
-              ),
+              // Figma Flutter Generator Group27Widget - GROUP
               Container(
                   child: new ListView(
                 children: cards,
+              )),
+              Container(
+                  child: new ListView(
+                children: cards2,
               )),
             ],
           ),
@@ -82,7 +79,7 @@ class _datatiketState extends State<datatiket>
   }
 }
 
-class CustomCard extends StatelessWidget {
+class CustomCard2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Card(
@@ -112,5 +109,225 @@ class CustomCard extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class CustomCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Card(
+        child: new Column(children: <Widget>[
+      // Figma Flutter Generator Group27Widget - GROUP
+      Container(
+          width: 385,
+          height: 193,
+          child: Stack(children: <Widget>[
+            Positioned(
+                top: 0,
+                left: 0,
+                child: Container(
+                    width: 385,
+                    height: 193,
+                    child: Stack(children: <Widget>[
+                      Positioned(
+                          top: 0,
+                          left: 0,
+                          child: Container(
+                              width: 385,
+                              height: 193,
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Color.fromRGBO(0, 0, 0, 0.25),
+                                      offset: Offset(0, 4),
+                                      blurRadius: 4)
+                                ],
+                                color: Color.fromRGBO(255, 255, 255, 1),
+                                border: Border.all(
+                                  color: Color.fromRGBO(0, 0, 0, 1),
+                                  width: 1,
+                                ),
+                              ))),
+                      Positioned(
+                          top: 7,
+                          left: 41.0001220703125,
+                          child: Text(
+                            'Resta Jaya',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Color.fromRGBO(0, 0, 0, 1),
+                                fontFamily: 'Inter',
+                                fontSize: 16,
+                                letterSpacing: 0,
+                                fontWeight: FontWeight.normal,
+                                height: 1.5 /*PERCENT not supported*/
+                                ),
+                          )),
+                      Positioned(
+                          top: 37,
+                          left: 10.0001220703125,
+                          child: Text(
+                            'SISTRO_RJ_UQJ1Km2Fq',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Color.fromRGBO(0, 0, 0, 1),
+                                fontFamily: 'Inter',
+                                fontSize: 14,
+                                letterSpacing: 0,
+                                fontWeight: FontWeight.normal,
+                                height: 1.5 /*PERCENT not supported*/
+                                ),
+                          )),
+                      Positioned(
+                          top: 155,
+                          left: 249,
+                          child: Container(
+                              width: 121,
+                              height: 30,
+                              child: Stack(children: <Widget>[
+                                Positioned(
+                                  top: 3,
+                                  left: 30,
+                                  child: MaterialButton(
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  HomePage()));
+                                    },
+                                    height: 33,
+                                    minWidth: 100,
+                                    shape: const StadiumBorder(),
+                                    color: Colors.green.shade900,
+                                    child: const Text(
+                                      "Print",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ]))),
+                      Positioned(
+                          top: 37,
+                          left: 269.0001220703125,
+                          child: Text(
+                            '532004887857',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                color: Color.fromRGBO(0, 0, 0, 1),
+                                fontFamily: 'Inter',
+                                fontSize: 14,
+                                letterSpacing: 0,
+                                fontWeight: FontWeight.normal,
+                                height: 1.5 /*PERCENT not supported*/
+                                ),
+                          )),
+                      Positioned(
+                          top: 67,
+                          left: 10.0001220703125,
+                          child: Text(
+                            'UREA SUB @50 KG',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                color: Color.fromRGBO(3, 136, 53, 1),
+                                fontFamily: 'Inter',
+                                fontSize: 14,
+                                letterSpacing: 0,
+                                fontWeight: FontWeight.normal,
+                                height: 1.5 /*PERCENT not supported*/
+                                ),
+                          )),
+                      Positioned(
+                          top: 98,
+                          left: 10.0001220703125,
+                          child: Text(
+                            'SIPANDA',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Color.fromRGBO(0, 0, 0, 1),
+                                fontFamily: 'Inter',
+                                fontSize: 14,
+                                letterSpacing: 0,
+                                fontWeight: FontWeight.normal,
+                                height: 1.5 /*PERCENT not supported*/
+                                ),
+                          )),
+                      Positioned(
+                          top: 98,
+                          left: 291.0001220703125,
+                          child: Text(
+                            'AD 8973 DC',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Color.fromRGBO(0, 0, 0, 1),
+                                fontFamily: 'Inter',
+                                fontSize: 14,
+                                letterSpacing: 0,
+                                fontWeight: FontWeight.normal,
+                                height: 1.5 /*PERCENT not supported*/
+                                ),
+                          )),
+                      Positioned(
+                          top: 131,
+                          left: 10.0001220703125,
+                          child: Text(
+                            'Status : Telah terverifikasi oleh Admin',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Color.fromRGBO(51, 78, 218, 1),
+                                fontFamily: 'Inter',
+                                fontSize: 14,
+                                letterSpacing: 0,
+                                fontWeight: FontWeight.normal,
+                                height: 1.5 /*PERCENT not supported*/
+                                ),
+                          )),
+                      Positioned(
+                          top: 155,
+                          left: 10.0001220703125,
+                          child: Text(
+                            '23-02-2022',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Color.fromRGBO(160, 150, 150, 1),
+                                fontFamily: 'Inter',
+                                fontSize: 14,
+                                letterSpacing: 0,
+                                fontWeight: FontWeight.normal,
+                                height: 1.5 /*PERCENT not supported*/
+                                ),
+                          )),
+                      Positioned(
+                          top: 123,
+                          left: 10,
+                          child: Divider(
+                              color: Color.fromRGBO(226, 210, 210, 1),
+                              thickness: 1)),
+                      Positioned(
+                          top: 95,
+                          left: 10,
+                          child: Divider(
+                              color: Color.fromRGBO(226, 210, 210, 1),
+                              thickness: 1)),
+                      Positioned(
+                          top: 7,
+                          left: 10,
+                          child: Text(
+                            'RJ',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                color: Color.fromRGBO(160, 150, 150, 1),
+                                fontFamily: 'Inter',
+                                fontSize: 16,
+                                letterSpacing: 0,
+                                fontWeight: FontWeight.normal,
+                                height: 1.5 /*PERCENT not supported*/
+                                ),
+                          )),
+                    ]))),
+          ]))
+    ]));
   }
 }
