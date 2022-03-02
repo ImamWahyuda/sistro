@@ -50,6 +50,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+  fading_edge_scrollview:
+    dependency: "direct main"
+    description:
+      name: fading_edge_scrollview
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.4"
   fake_async:
     dependency: transitive
     description:
@@ -81,6 +88,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_ticket_widget:
+    dependency: "direct main"
+    description:
+      name: flutter_ticket_widget
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.1"
   lints:
     dependency: transitive
     description:
@@ -198,6 +212,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.3"
+  ticket_material:
+    dependency: "direct main"
+    description:
+      name: ticket_material
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
+  ticket_pass_package:
+    dependency: "direct main"
+    description:
+      name: ticket_pass_package
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0"
   typed_data:
     dependency: transitive
     description:

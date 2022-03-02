@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sistro_app/screen/datatiket.dart';
+import 'package:sistro_app/screen/detailtiket.dart';
 import 'package:sistro_app/screen/login.dart';
 import 'package:sistro_app/screen/datatiket.dart';
 import 'package:sistro_app/screen/pilihshift.dart';
 import 'package:sistro_app/screen/tiketbaru.dart';
+
+import 'package:flutter_ticket_widget/flutter_ticket_widget.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -67,8 +70,8 @@ class HomePage extends StatelessWidget {
             left: 17,
             child: new InkWell(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => tiketbaru())); //ganti
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => tiket())); //ganti
                 },
                 child: Container(
                     width: 183,
