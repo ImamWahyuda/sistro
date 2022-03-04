@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sistro_app/screen/pilihshift.dart';
+import 'package:sistro_app/screen/pesantiket.dart';
 import 'package:sistro_app/screen/homepage.dart';
 
 class tiketbaru extends StatefulWidget {
@@ -363,7 +363,7 @@ class CustomCard extends StatelessWidget {
                                               Navigator.of(context).push(
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          shift()));
+                                                          pesan()));
                                             },
                                             height: 33,
                                             minWidth: 100,

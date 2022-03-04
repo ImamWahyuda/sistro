@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sistro_app/screen/cetak.dart';
 import 'package:sistro_app/screen/homepage.dart';
 import 'package:sistro_app/screen/detailtiket.dart';
+import 'package:sistro_app/screen/cetakposto.dart';
 
 class datatiket extends StatefulWidget {
   datatiket({Key? key}) : super(key: key);
@@ -198,10 +199,7 @@ class CustomCard extends StatelessWidget {
                                     bottom: 2,
                                     child: MaterialButton(
                                       onPressed: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    CetakTiket()));
+                                        showAlert(context);
                                       },
                                       height: 33,
                                       minWidth: 100,
@@ -339,4 +337,54 @@ class CustomCard extends StatelessWidget {
       ]),
     ));
   }
+}
+
+showAlert(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Text('Cetak',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'Inter',
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold)),
+          CloseButton(
+              color: Colors.black,
+              onPressed: () {
+                Navigator.of(context).pop();
+              })
+        ]),
+        content: Text("Pilih file yang akan Anda Cetak "),
+        actions: <Widget>[
+          FlatButton(
+            child: Text("Cetak Posto", style: TextStyle(color: Colors.white)),
+            shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(30.0)),
+            color: Colors.green.shade900,
+            onPressed: () {
+              //Put your code here which you want to execute on No button click.
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => CetakPosto()));
+            },
+          ),
+          FlatButton(
+            child: Text("Cetak Tiket", style: TextStyle(color: Colors.white)),
+            shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(30.0)),
+            color: Colors.green.shade900,
+            onPressed: () {
+              //Put your code here which you want to execute on Cancel button click.
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => CetakTiket()));
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sistro_app/screen/datatiket.dart';
 import 'package:sistro_app/screen/homepage.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
@@ -25,7 +26,7 @@ class CetakTiket extends StatelessWidget {
                 icon: Icon(Icons.close),
                 onPressed: () {
                   Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => HomePage()));
+                      MaterialPageRoute(builder: (context) => datatiket()));
                 },
               ),
             ],
