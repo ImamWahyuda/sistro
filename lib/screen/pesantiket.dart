@@ -34,23 +34,20 @@ class _pesanState extends State<pesan> {
                     .push(MaterialPageRoute(builder: (context) => tiketbaru()))
               },
             )),
-        body: Center(
+        body: SingleChildScrollView(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              verticalDirection: VerticalDirection.down,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 20.0, right: 60),
+                  padding: const EdgeInsets.only(top: 10, right: 10),
                   child: Column(
                     children: <Widget>[
                       widget1('Produk', 'Urea SUB @50KG'),
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0, right: 40.0),
                         child: widget1('Sisa', '50'),
-                      ),
-                      Divider(
-                        height: 40,
-                        color: Colors.black,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 10.0, right: 40.0),
@@ -81,7 +78,7 @@ class _pesanState extends State<pesan> {
                             ),
                           )),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0, right: 40.0),
+                        padding: const EdgeInsets.only(top: 10.0, right: 0),
                         child: widget2('Tonase'),
                       ),
                       Padding(
@@ -95,12 +92,13 @@ class _pesanState extends State<pesan> {
                             ),
                           )),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0, right: 40.0),
+                        padding: const EdgeInsets.only(top: 10.0, right: 10.0),
                         child: widget2('Tanggal'),
                       ),
                       Padding(
                           padding: const EdgeInsets.only(top: 10.0, left: 10),
                           child: TextField(
+                            controller: dateController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               suffixIcon: Icon(
@@ -123,7 +121,7 @@ class _pesanState extends State<pesan> {
                             },
                           )),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0, right: 40.0),
+                        padding: const EdgeInsets.only(top: 10.0, right: 10.0),
                         child: widget2('Pilih Shift'),
                       ),
                       Padding(
@@ -156,21 +154,21 @@ class _pesanState extends State<pesan> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(40),
+                        padding: const EdgeInsets.only(top: 30, bottom: 0),
                         child: MaterialButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => datatiket()));
                           },
-                          height: 45,
-                          minWidth: 240,
+                          height: 38,
+                          minWidth: 200,
                           shape: const StadiumBorder(),
                           color: Colors.green.shade900,
                           child: const Text(
                             "Pesan",
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 14,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),

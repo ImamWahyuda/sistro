@@ -30,16 +30,16 @@ class _tiketState extends State<tiket> {
       backgroundColor: Colors.green.shade900,
       body: Center(
         child: FlutterTicketWidget(
-          width: 380.0,
-          height: 630.0,
-          isCornerRounded: true,
+          width: 360.0,
+          height: 700.0,
+          isCornerRounded: false,
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Container(
                       width: 190.0,
@@ -58,13 +58,13 @@ class _tiketState extends State<tiket> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 20.0, right: 60),
+                  padding: const EdgeInsets.only(top: 10.0),
                   child: Column(
                     children: <Widget>[
                       ticketDetailsWidget(
                           'Kode booking', 'SISTRO_RJ_UQJ1Km2Fq'),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0, right: 40.0),
+                        padding: const EdgeInsets.only(top: 10.0),
                         child:
                             ticketDetailsWidget('Tgl Muat', '03 Februari 2022'),
                       ),
@@ -76,41 +76,42 @@ class _tiketState extends State<tiket> {
                         child: ticketDetailsWidget('Shift', '01'),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0, right: 40.0),
+                        padding: const EdgeInsets.only(top: 10.0),
                         child:
                             ticketDetailsWidget('Nopol Armada', 'AD 8973 DC'),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0, right: 40.0),
+                        padding: const EdgeInsets.only(top: 10.0),
                         child: ticketDetailsWidget('Nama Driver', 'SIPANDA'),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0, right: 40.0),
+                        padding: const EdgeInsets.only(top: 10.0),
                         child: ticketDetailsWidget('Produk', 'UREA SUB @50 KG'),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0, right: 40.0),
+                        padding: const EdgeInsets.only(top: 10.0),
                         child: ticketDetailsWidget('Transportir', 'Resta Jaya'),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0, right: 40.0),
+                        padding: const EdgeInsets.only(top: 10.0),
                         child: ticketDetailsWidget('Tujuan', 'BDG 1NAGREG'),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0, right: 40.0),
+                        padding: const EdgeInsets.only(top: 10.0),
                         child: ticketDetailsWidget('QTY POSTO', '99'),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0, right: 40.0),
+                        padding: const EdgeInsets.only(top: 10.0),
                         child: ticketDetailsWidget('QTY', '17'),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0, right: 40.0),
+                        padding: const EdgeInsets.only(top: 10.0),
                         child: ticketDetailsWidget(
                             'Tgl Pesan', '03 Februari 2022'),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10.0, right: 40.0),
+                        padding: const EdgeInsets.only(
+                            top: 10.0, right: 40.0, bottom: 0),
                         child: ticketDetailsWidget(
                             'Status', 'Armada sampai di Security Pass'),
                       ),

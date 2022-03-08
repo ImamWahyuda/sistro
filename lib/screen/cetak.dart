@@ -3,7 +3,14 @@ import 'package:sistro_app/screen/datatiket.dart';
 import 'package:sistro_app/screen/homepage.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class CetakTiket extends StatelessWidget {
+class CetakTiket extends StatefulWidget {
+  CetakTiket({Key? key}) : super(key: key);
+
+  @override
+  State<CetakTiket> createState() => _CetakTiketState();
+}
+
+class _CetakTiketState extends State<CetakTiket> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +30,13 @@ class CetakTiket extends StatelessWidget {
             automaticallyImplyLeading: false,
             actions: [
               IconButton(
+                icon: Icon(Icons.print),
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => HomePage()));
+                },
+              ),
+              IconButton(
                 icon: Icon(Icons.close),
                 onPressed: () {
                   Navigator.of(context).push(
@@ -32,564 +46,230 @@ class CetakTiket extends StatelessWidget {
             ],
           ),
         ),
-        body: Padding(
-            padding: EdgeInsets.only(top: 0),
-            child: Stack(
-                alignment: AlignmentDirectional.center,
-                children: <Widget>[
-                  Positioned(
-                      top: 0,
-                      left: 0,
-                      child: Container(
-                          width: 425,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: Colors.green.shade900,
-                          ))),
-                  Positioned(
-                      top: 5,
-                      left: 18,
-                      child: Text(
-                        'Tiket Pemuatan',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            letterSpacing: 0,
-                            height: 1.5 /*PERCENT not supported*/
-                            ),
-                      )),
-                  Padding(
-                      padding: EdgeInsets.only(top: 0),
-                      child: Stack(
-                          alignment: AlignmentDirectional.center,
-                          children: <Widget>[
-                            Positioned(
-                                top: 41,
-                                left: 0,
-                                child: Container(
-                                    width: 425,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      color: Color.fromRGBO(236, 236, 236, 1),
-                                    ))),
-                            Positioned(
-                                top: 46,
-                                left: 18,
-                                child: Text(
-                                  'Detail Transportir',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      letterSpacing: 0,
-                                      height: 1.5 /*PERCENT not supported*/
-                                      ),
-                                )),
-                            Padding(
-                                padding: EdgeInsets.only(top: 0),
-                                child: Stack(
-                                    alignment: AlignmentDirectional.center,
-                                    children: <Widget>[
-                                      Positioned(
-                                        top: 90,
-                                        left: 18,
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              "Kode Booking",
-                                              textAlign: TextAlign.left,
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.normal,
-                                                  fontSize: 14),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                          padding: EdgeInsets.only(top: 0),
-                                          child: Stack(
-                                              alignment:
-                                                  AlignmentDirectional.center,
-                                              children: <Widget>[
-                                                Positioned(
-                                                  top: 90,
-                                                  right: 18,
-                                                  child: Column(
-                                                    children: [
-                                                      Text(
-                                                        "SISTRO_RJ_UQJ1Km2Fq",
-                                                        textAlign:
-                                                            TextAlign.right,
-                                                        style: TextStyle(
-                                                            color: Colors
-                                                                .green.shade900,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .normal,
-                                                            fontSize: 14),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                Padding(
-                                                    padding:
-                                                        EdgeInsets.only(top: 0),
-                                                    child: Stack(
-                                                        alignment:
-                                                            AlignmentDirectional
-                                                                .center,
-                                                        children: <Widget>[
-                                                          Positioned(
-                                                            top: 115,
-                                                            left: 18,
-                                                            child: Column(
-                                                              children: [
-                                                                Text(
-                                                                  "Nama Transportir",
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .left,
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                          .black,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .normal,
-                                                                      fontSize:
-                                                                          14),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(top: 0),
-                                                              child: Stack(
-                                                                  alignment:
-                                                                      AlignmentDirectional
-                                                                          .center,
-                                                                  children: <
-                                                                      Widget>[
-                                                                    Positioned(
-                                                                      top: 115,
-                                                                      right: 18,
-                                                                      child:
-                                                                          Column(
-                                                                        children: [
-                                                                          Text(
-                                                                            "Resta Jaya",
-                                                                            textAlign:
-                                                                                TextAlign.right,
-                                                                            style: TextStyle(
-                                                                                color: Colors.green.shade900,
-                                                                                fontWeight: FontWeight.normal,
-                                                                                fontSize: 14),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                    Padding(
-                                                                        padding: EdgeInsets.only(
-                                                                            top:
-                                                                                0),
-                                                                        child: Stack(
-                                                                            alignment:
-                                                                                AlignmentDirectional.center,
-                                                                            children: <Widget>[
-                                                                              Positioned(
-                                                                                top: 140,
-                                                                                left: 18,
-                                                                                child: Column(
-                                                                                  children: [
-                                                                                    Text(
-                                                                                      "Nama Driver",
-                                                                                      textAlign: TextAlign.left,
-                                                                                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontSize: 14),
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
-                                                                              ),
-                                                                              Padding(
-                                                                                  padding: EdgeInsets.only(top: 0),
-                                                                                  child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                    Positioned(
-                                                                                      top: 140,
-                                                                                      right: 18,
-                                                                                      child: Column(
-                                                                                        children: [
-                                                                                          Text(
-                                                                                            "SIPANDA",
-                                                                                            textAlign: TextAlign.right,
-                                                                                            style: TextStyle(color: Colors.green.shade900, fontWeight: FontWeight.normal, fontSize: 14),
-                                                                                          ),
-                                                                                        ],
-                                                                                      ),
-                                                                                    ),
-                                                                                    Padding(
-                                                                                        padding: EdgeInsets.only(top: 0),
-                                                                                        child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                          Positioned(
-                                                                                            top: 165,
-                                                                                            left: 18,
-                                                                                            child: Column(
-                                                                                              children: [
-                                                                                                Text(
-                                                                                                  "Nopol Armada",
-                                                                                                  textAlign: TextAlign.left,
-                                                                                                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontSize: 14),
-                                                                                                ),
-                                                                                              ],
-                                                                                            ),
-                                                                                          ),
-                                                                                          Padding(
-                                                                                              padding: EdgeInsets.only(top: 0),
-                                                                                              child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                                Positioned(
-                                                                                                  top: 165,
-                                                                                                  //   left: 8,
-                                                                                                  right: 18,
-                                                                                                  child: Column(
-                                                                                                    children: [
-                                                                                                      Text(
-                                                                                                        "AD 8973 DC",
-                                                                                                        textAlign: TextAlign.right,
-                                                                                                        style: TextStyle(color: Colors.green.shade900, fontWeight: FontWeight.normal, fontSize: 14),
-                                                                                                      ),
-                                                                                                    ],
-                                                                                                  ),
-                                                                                                ),
-                                                                                                Positioned(
-                                                                                                    top: 190,
-                                                                                                    right: 18,
-                                                                                                    child: Container(
-                                                                                                        width: 95,
-                                                                                                        height: 95,
-                                                                                                        decoration: BoxDecoration(
-                                                                                                          image: DecorationImage(image: AssetImage('images/kode.png'), fit: BoxFit.fitWidth),
-                                                                                                        ))),
-                                                                                                Padding(
-                                                                                                    padding: EdgeInsets.only(top: 0),
-                                                                                                    child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                                      Positioned(
-                                                                                                          top: 295,
-                                                                                                          left: 0,
-                                                                                                          child: Container(
-                                                                                                              width: 425,
-                                                                                                              height: 40,
-                                                                                                              decoration: BoxDecoration(
-                                                                                                                color: Colors.green.shade900,
-                                                                                                              ))),
-                                                                                                      Positioned(
-                                                                                                          top: 300,
-                                                                                                          left: 18,
-                                                                                                          child: Text(
-                                                                                                            'Detail Delivery Order',
-                                                                                                            textAlign: TextAlign.center,
-                                                                                                            style: TextStyle(color: Colors.white, fontSize: 20, letterSpacing: 0, height: 1.5 /*PERCENT not supported*/
-                                                                                                                ),
-                                                                                                          )),
-                                                                                                      Padding(
-                                                                                                          padding: EdgeInsets.only(top: 0),
-                                                                                                          child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                                            Positioned(
-                                                                                                              top: 345,
-                                                                                                              left: 18,
-                                                                                                              child: Column(
-                                                                                                                children: [
-                                                                                                                  Text(
-                                                                                                                    "POSTO",
-                                                                                                                    textAlign: TextAlign.left,
-                                                                                                                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontSize: 14),
-                                                                                                                  ),
-                                                                                                                ],
-                                                                                                              ),
-                                                                                                            ),
-                                                                                                            Padding(
-                                                                                                                padding: EdgeInsets.only(top: 0),
-                                                                                                                child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                                                  Positioned(
-                                                                                                                    top: 345,
-                                                                                                                    right: 18,
-                                                                                                                    child: Column(
-                                                                                                                      children: [
-                                                                                                                        Text(
-                                                                                                                          "532004887857",
-                                                                                                                          textAlign: TextAlign.right,
-                                                                                                                          style: TextStyle(color: Colors.green.shade900, fontWeight: FontWeight.normal, fontSize: 14),
-                                                                                                                        ),
-                                                                                                                      ],
-                                                                                                                    ),
-                                                                                                                  ),
-                                                                                                                  Padding(
-                                                                                                                      padding: EdgeInsets.only(top: 0),
-                                                                                                                      child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                                                        Positioned(
-                                                                                                                          top: 370,
-                                                                                                                          left: 18,
-                                                                                                                          child: Column(
-                                                                                                                            children: [
-                                                                                                                              Text(
-                                                                                                                                "Gudang Asal",
-                                                                                                                                textAlign: TextAlign.left,
-                                                                                                                                style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontSize: 14),
-                                                                                                                              ),
-                                                                                                                            ],
-                                                                                                                          ),
-                                                                                                                        ),
-                                                                                                                        Padding(
-                                                                                                                            padding: EdgeInsets.only(top: 0),
-                                                                                                                            child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                                                              Positioned(
-                                                                                                                                top: 370,
-                                                                                                                                right: 18,
-                                                                                                                                child: Column(
-                                                                                                                                  children: [
-                                                                                                                                    Text(
-                                                                                                                                      "Gudang Muat PKC",
-                                                                                                                                      textAlign: TextAlign.right,
-                                                                                                                                      style: TextStyle(color: Colors.green.shade900, fontWeight: FontWeight.normal, fontSize: 14),
-                                                                                                                                    ),
-                                                                                                                                  ],
-                                                                                                                                ),
-                                                                                                                              ),
-                                                                                                                              Padding(
-                                                                                                                                  padding: EdgeInsets.only(top: 0),
-                                                                                                                                  child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                                                                    Positioned(
-                                                                                                                                      top: 395,
-                                                                                                                                      left: 18,
-                                                                                                                                      child: Column(
-                                                                                                                                        children: [
-                                                                                                                                          Text(
-                                                                                                                                            "Gudang Tujuan",
-                                                                                                                                            textAlign: TextAlign.left,
-                                                                                                                                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontSize: 14),
-                                                                                                                                          ),
-                                                                                                                                        ],
-                                                                                                                                      ),
-                                                                                                                                    ),
-                                                                                                                                    Padding(
-                                                                                                                                        padding: EdgeInsets.only(top: 0),
-                                                                                                                                        child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                                                                          Positioned(
-                                                                                                                                            top: 395,
-                                                                                                                                            right: 18,
-                                                                                                                                            child: Column(
-                                                                                                                                              children: [
-                                                                                                                                                Text(
-                                                                                                                                                  "BDG 1NAGREG",
-                                                                                                                                                  textAlign: TextAlign.right,
-                                                                                                                                                  style: TextStyle(color: Colors.green.shade900, fontWeight: FontWeight.normal, fontSize: 14),
-                                                                                                                                                ),
-                                                                                                                                              ],
-                                                                                                                                            ),
-                                                                                                                                          ),
-                                                                                                                                          Padding(
-                                                                                                                                              padding: EdgeInsets.only(top: 0),
-                                                                                                                                              child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                                                                                Positioned(
-                                                                                                                                                  top: 420,
-                                                                                                                                                  left: 18,
-                                                                                                                                                  child: Column(
-                                                                                                                                                    children: [
-                                                                                                                                                      Text(
-                                                                                                                                                        "Produk",
-                                                                                                                                                        textAlign: TextAlign.left,
-                                                                                                                                                        style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontSize: 14),
-                                                                                                                                                      ),
-                                                                                                                                                    ],
-                                                                                                                                                  ),
-                                                                                                                                                ),
-                                                                                                                                                Padding(
-                                                                                                                                                    padding: EdgeInsets.only(top: 0),
-                                                                                                                                                    child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                                                                                      Positioned(
-                                                                                                                                                        top: 420,
-                                                                                                                                                        right: 18,
-                                                                                                                                                        child: Column(
-                                                                                                                                                          children: [
-                                                                                                                                                            Text(
-                                                                                                                                                              "UREA SUB @50 KG",
-                                                                                                                                                              textAlign: TextAlign.right,
-                                                                                                                                                              style: TextStyle(color: Colors.green.shade900, fontWeight: FontWeight.normal, fontSize: 14),
-                                                                                                                                                            ),
-                                                                                                                                                          ],
-                                                                                                                                                        ),
-                                                                                                                                                      ),
-                                                                                                                                                      Padding(
-                                                                                                                                                          padding: EdgeInsets.only(top: 0),
-                                                                                                                                                          child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                                                                                            Positioned(
-                                                                                                                                                              top: 445,
-                                                                                                                                                              left: 18,
-                                                                                                                                                              child: Column(
-                                                                                                                                                                children: [
-                                                                                                                                                                  Text(
-                                                                                                                                                                    "Tonase (Ton)",
-                                                                                                                                                                    textAlign: TextAlign.left,
-                                                                                                                                                                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontSize: 14),
-                                                                                                                                                                  ),
-                                                                                                                                                                ],
-                                                                                                                                                              ),
-                                                                                                                                                            ),
-                                                                                                                                                            Padding(
-                                                                                                                                                                padding: EdgeInsets.only(top: 0),
-                                                                                                                                                                child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                                                                                                  Positioned(
-                                                                                                                                                                    top: 445,
-                                                                                                                                                                    right: 18,
-                                                                                                                                                                    child: Column(
-                                                                                                                                                                      children: [
-                                                                                                                                                                        Text(
-                                                                                                                                                                          "17",
-                                                                                                                                                                          textAlign: TextAlign.right,
-                                                                                                                                                                          style: TextStyle(color: Colors.green.shade900, fontWeight: FontWeight.normal, fontSize: 14),
-                                                                                                                                                                        ),
-                                                                                                                                                                      ],
-                                                                                                                                                                    ),
-                                                                                                                                                                  ),
-                                                                                                                                                                  Padding(
-                                                                                                                                                                      padding: EdgeInsets.only(top: 0),
-                                                                                                                                                                      child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                                                                                                        Positioned(
-                                                                                                                                                                          top: 470,
-                                                                                                                                                                          left: 18,
-                                                                                                                                                                          child: Column(
-                                                                                                                                                                            children: [
-                                                                                                                                                                              Text(
-                                                                                                                                                                                "Tanggal Muat",
-                                                                                                                                                                                textAlign: TextAlign.left,
-                                                                                                                                                                                style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontSize: 14),
-                                                                                                                                                                              ),
-                                                                                                                                                                            ],
-                                                                                                                                                                          ),
-                                                                                                                                                                        ),
-                                                                                                                                                                        Padding(
-                                                                                                                                                                            padding: EdgeInsets.only(top: 0),
-                                                                                                                                                                            child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                                                                                                              Positioned(
-                                                                                                                                                                                top: 470,
-                                                                                                                                                                                right: 18,
-                                                                                                                                                                                child: Column(
-                                                                                                                                                                                  children: [
-                                                                                                                                                                                    Text(
-                                                                                                                                                                                      "3 Februari 2022",
-                                                                                                                                                                                      textAlign: TextAlign.right,
-                                                                                                                                                                                      style: TextStyle(color: Colors.green.shade900, fontWeight: FontWeight.normal, fontSize: 14),
-                                                                                                                                                                                    ),
-                                                                                                                                                                                  ],
-                                                                                                                                                                                ),
-                                                                                                                                                                              ),
-                                                                                                                                                                              Padding(
-                                                                                                                                                                                  padding: EdgeInsets.only(top: 0),
-                                                                                                                                                                                  child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                                                                                                                    Positioned(
-                                                                                                                                                                                      top: 495,
-                                                                                                                                                                                      left: 18,
-                                                                                                                                                                                      child: Column(
-                                                                                                                                                                                        children: [
-                                                                                                                                                                                          Text(
-                                                                                                                                                                                            "Shift",
-                                                                                                                                                                                            textAlign: TextAlign.left,
-                                                                                                                                                                                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.normal, fontSize: 14),
-                                                                                                                                                                                          ),
-                                                                                                                                                                                        ],
-                                                                                                                                                                                      ),
-                                                                                                                                                                                    ),
-                                                                                                                                                                                    Padding(
-                                                                                                                                                                                        padding: EdgeInsets.only(top: 0),
-                                                                                                                                                                                        child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                                                                                                                          Positioned(
-                                                                                                                                                                                            top: 495,
-                                                                                                                                                                                            right: 18,
-                                                                                                                                                                                            child: Column(
-                                                                                                                                                                                              children: [
-                                                                                                                                                                                                Text(
-                                                                                                                                                                                                  "Shift 1",
-                                                                                                                                                                                                  textAlign: TextAlign.right,
-                                                                                                                                                                                                  style: TextStyle(color: Colors.green.shade900, fontWeight: FontWeight.normal, fontSize: 14),
-                                                                                                                                                                                                ),
-                                                                                                                                                                                              ],
-                                                                                                                                                                                            ),
-                                                                                                                                                                                          ),
-                                                                                                                                                                                          Positioned(
-                                                                                                                                                                                              top: 445,
-                                                                                                                                                                                              left: 125,
-                                                                                                                                                                                              child: Container(
-                                                                                                                                                                                                  width: 175,
-                                                                                                                                                                                                  height: 175,
-                                                                                                                                                                                                  decoration: BoxDecoration(
-                                                                                                                                                                                                    image: DecorationImage(image: AssetImage('images/barcode.png'), fit: BoxFit.fitWidth),
-                                                                                                                                                                                                  ))),
-                                                                                                                                                                                          Padding(
-                                                                                                                                                                                              padding: EdgeInsets.only(top: 0),
-                                                                                                                                                                                              child: Stack(alignment: AlignmentDirectional.center, children: <Widget>[
-                                                                                                                                                                                                Positioned(
-                                                                                                                                                                                                    top: 555,
-                                                                                                                                                                                                    left: 0,
-                                                                                                                                                                                                    bottom: 0,
-                                                                                                                                                                                                    child: Container(
-                                                                                                                                                                                                        width: 425,
-                                                                                                                                                                                                        height: 55,
-                                                                                                                                                                                                        decoration: BoxDecoration(
-                                                                                                                                                                                                          color: Colors.green.shade900,
-                                                                                                                                                                                                        ))),
-                                                                                                                                                                                                Padding(
-                                                                                                                                                                                                    padding: EdgeInsets.only(top: 0),
-                                                                                                                                                                                                    child: Stack(
-                                                                                                                                                                                                      alignment: AlignmentDirectional.center,
-                                                                                                                                                                                                      children: <Widget>[
-                                                                                                                                                                                                        Positioned(
-                                                                                                                                                                                                          top: 560,
-                                                                                                                                                                                                          right: 10,
-                                                                                                                                                                                                          bottom: 0,
-                                                                                                                                                                                                          child: Column(
-                                                                                                                                                                                                            children: [
-                                                                                                                                                                                                              MaterialButton(
-                                                                                                                                                                                                                onPressed: () {
-                                                                                                                                                                                                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomePage()));
-                                                                                                                                                                                                                },
-                                                                                                                                                                                                                height: 30,
-                                                                                                                                                                                                                minWidth: 150,
-                                                                                                                                                                                                                shape: const StadiumBorder(),
-                                                                                                                                                                                                                color: Color.fromARGB(200, 239, 243, 31),
-                                                                                                                                                                                                                child: const Text(
-                                                                                                                                                                                                                  "Cetak Tiket Booking",
-                                                                                                                                                                                                                  style: TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold),
-                                                                                                                                                                                                                ),
-                                                                                                                                                                                                              ),
-                                                                                                                                                                                                            ],
-                                                                                                                                                                                                          ),
-                                                                                                                                                                                                        ),
-                                                                                                                                                                                                      ],
-                                                                                                                                                                                                    ))
-                                                                                                                                                                                              ]))
-                                                                                                                                                                                        ]))
-                                                                                                                                                                                  ]))
-                                                                                                                                                                            ]))
-                                                                                                                                                                      ]))
-                                                                                                                                                                ]))
-                                                                                                                                                          ]))
-                                                                                                                                                    ]))
-                                                                                                                                              ]))
-                                                                                                                                        ]))
-                                                                                                                                  ]))
-                                                                                                                            ]))
-                                                                                                                      ]))
-                                                                                                                ]))
-                                                                                                          ]))
-                                                                                                    ]))
-                                                                                              ]))
-                                                                                        ]))
-                                                                                  ]))
-                                                                            ]))
-                                                                  ]))
-                                                        ]))
-                                              ]))
-                                    ]))
-                          ]))
-                ])));
+        body: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                verticalDirection: VerticalDirection.down,
+                children: [
+              Padding(
+                  padding: const EdgeInsets.only(top: 0),
+                  child: Column(children: <Widget>[
+                    widget1(Column),
+                  ])),
+              Padding(
+                  padding: const EdgeInsets.only(top: 0),
+                  child: Column(children: <Widget>[
+                    widget2(Column),
+                  ])),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: widget3(
+                    'Kode Booking \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t',
+                    'SISTRO_RJ_UQJ1Km2Fq'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: widget3(
+                    'Nama Transportir \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t',
+                    'Resta Jaya'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: widget3(
+                    'Nama Driver \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t',
+                    'SIPANDA'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: widget3(
+                    'Nopol Armada \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t',
+                    'AD 8973 DC'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: widget4(Image),
+              ),
+              Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Column(children: <Widget>[
+                    widget5(Column),
+                  ])),
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: widget3(
+                    'POSTO \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t',
+                    '532004887857'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: widget3(
+                    'Gudang Asal \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t',
+                    'Gudang Muat PKC'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: widget3(
+                    'Gudang Tujuan \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t',
+                    'BDG 1NAGREG'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: widget3(
+                    'Produk \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t',
+                    'UREA SUB @50 KG'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: widget3(
+                    'Tonase (Ton) \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t',
+                    '17'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: widget3(
+                    'Tanggal Muat \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t',
+                    '3 Februari 2022'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5),
+                child: widget3(
+                    'Shift \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t',
+                    'Shift 1'),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 0),
+                child: widget6(Image),
+              ),
+            ])));
   }
+}
+
+Widget widget1(Column) {
+  return Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+    Padding(
+      padding: const EdgeInsets.only(left: 0),
+      child: Container(
+        padding: EdgeInsets.only(top: 0),
+        margin: EdgeInsets.only(top: 0),
+        width: 411.4,
+        height: 50,
+        decoration: BoxDecoration(
+          color: Colors.green.shade900,
+        ),
+        child: Text("Tiket Pemuatan",
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.white,
+              height: 2,
+            )),
+      ),
+    )
+  ]);
+}
+
+Widget widget2(Column) {
+  return Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+    Padding(
+      padding: const EdgeInsets.only(left: 0),
+      child: Container(
+        padding: EdgeInsets.only(top: 0),
+        margin: EdgeInsets.only(top: 0),
+        width: 411.4,
+        height: 40,
+        decoration: BoxDecoration(
+          color: Color.fromRGBO(236, 236, 236, 1),
+        ),
+        child: Text("Detail Transportir",
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.black,
+              height: 1.75,
+            )),
+      ),
+    )
+  ]);
+}
+
+Widget widget3(String firstText, String secondText) {
+  return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(left: 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    firstText,
+                    style: TextStyle(color: Colors.black, fontSize: 16),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 0, right: 0),
+                    child: Text(
+                      secondText,
+                      style:
+                          TextStyle(color: Colors.green.shade900, fontSize: 16),
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+        )
+      ]);
+}
+
+Widget widget4(Image) {
+  return Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
+    Padding(
+        padding: const EdgeInsets.only(top: 0, right: 10),
+        child: Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('images/kode.png'), fit: BoxFit.fitWidth),
+            ))),
+  ]);
+}
+
+Widget widget5(Column) {
+  return Row(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
+    Padding(
+      padding: const EdgeInsets.only(left: 0),
+      child: Container(
+        padding: EdgeInsets.only(top: 0),
+        margin: EdgeInsets.only(top: 0),
+        width: 411.4,
+        height: 50,
+        decoration: BoxDecoration(
+          color: Colors.green.shade900,
+        ),
+        child: Text("Detail Delivery Order",
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.white,
+              height: 2,
+            )),
+      ),
+    )
+  ]);
+}
+
+Widget widget6(Image) {
+  return Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+    Padding(
+        padding: const EdgeInsets.only(top: 0),
+        child: Container(
+            width: 200,
+            height: 75,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('images/barcode.png'),
+                  fit: BoxFit.fitWidth),
+            ))),
+  ]);
 }

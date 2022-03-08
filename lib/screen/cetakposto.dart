@@ -3,930 +3,526 @@ import 'package:sistro_app/screen/datatiket.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:sistro_app/screen/homepage.dart';
 
-class CetakPosto extends StatelessWidget {
+class CetakPosto extends StatefulWidget {
+  CetakPosto({Key? key}) : super(key: key);
+
+  @override
+  State<CetakPosto> createState() => _CetakPostoState();
+}
+
+class _CetakPostoState extends State<CetakPosto> {
+  String dropdownValue = '';
+  final dateController = TextEditingController();
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed
+    dateController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(50.0), // here the desired height
-          child: AppBar(
-            backgroundColor: Colors.green.shade900,
-            title: Column(
-              children: <Widget>[
-                Image.asset(
-                  'images/logosistro.png',
-                  width: 85,
-                  height: 26,
+            preferredSize: Size.fromHeight(50.0), // here the desired height
+            child: AppBar(
+              backgroundColor: Colors.green.shade900,
+              title: Column(
+                children: <Widget>[
+                  Image.asset(
+                    'images/logosistro.png',
+                    width: 85,
+                    height: 26,
+                  ),
+                ],
+              ),
+              automaticallyImplyLeading: false,
+              actions: [
+                IconButton(
+                  icon: Icon(Icons.print),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => HomePage()));
+                  },
+                ),
+                IconButton(
+                  icon: Icon(Icons.close),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => datatiket()));
+                  },
                 ),
               ],
+            )),
+        body: Center(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                verticalDirection: VerticalDirection.down,
+                children: [
+              Padding(
+                  padding: const EdgeInsets.only(top: 0, left: 0),
+                  child: Stack(
+                      alignment: AlignmentDirectional.center,
+                      children: <Widget>[
+                        Positioned(
+                            top: 75,
+                            right: 5,
+                            child: Container(
+                                width: 150,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('images/kode.png'),
+                                      fit: BoxFit.fitWidth),
+                                ))),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 0),
+                          child: Column(children: <Widget>[
+                            widget1(
+                              'Stock Transport Order',
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget1('No. Po 5000000123'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget1('Tanggal : 01 Februari 2022'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 7.0, left: 0),
+                              child: Container(
+                                height: 1.0,
+                                width: 400.0,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                top: 3.0,
+                              ),
+                              child: widget2('Kepada Yth:'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3('RESTA JAYA'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3('Indonesia'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3('Mohon diangkut barang berikut:'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 3),
+                              child: widget2('Asal Barang'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3('Gudang Muat PKC, PKC'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3('Karawang'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3('Karawang'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3('Indonesia'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 3),
+                              child: widget2('Tujuan Barang'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3('BKS Cikarang, PKC'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3(
+                                  'Jl. Jendral Urip Sumoharjo No 238, Tanjungbaru, '),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child:
+                                  widget3('Kec. Cikarang Timur, Kab. Bekasi'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3('Kab. Bekasi'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3('Jawa Barat'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3('Indonesia'),
+                            ),
+                            /* Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3(
+                                  'Moda \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t  Truk'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3(
+                                  'Kondisi Penyerahan \t \t \t \t \t \t \t \t Diserahkan di depan pintu gerbang'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3('Referensi'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3(
+                                  'Pemilik Barang \t \t \t \t \t \t \t \t \t \t \t \t  PT. Pupuk Sriwidjaja'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3(
+                                  'Batas Waktu Pengambilan \t \t  28 Februari 2022'),
+                            ),*/
+                            Padding(
+                              padding: const EdgeInsets.only(top: 7.0, left: 0),
+                              child: Container(
+                                height: 1.0,
+                                width: 400.0,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: widget5(
+                                  'Moda \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t',
+                                  'Truk'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget5(
+                                  'Kondisi Penyerahan \t\t\t\t\t\t\t\t\t\t\t\t\t\t',
+                                  'Diserahkan di depan pintu gerbang'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget5('Referensi', ''),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget5(
+                                  'Pemilik Barang  \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t',
+                                  'PT. Pupuk Sriwidjaja'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget5('Batas Waktu Pengambilan  \t\t',
+                                  '28 Februari 2022'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 7.0, left: 0),
+                              child: Container(
+                                height: 1.0,
+                                width: 400.0,
+                                color: Colors.black,
+                              ),
+                            ),
+                            /*  Padding(
+                              padding: const EdgeInsets.only(top: 3),
+                              child: widget3(
+                                  'No \t \t \t \t Nama Barang \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t \t Qty \t \t \t \t \t \t \t \t Satuan'),
+                            ),*/
+                            Padding(
+                              padding: const EdgeInsets.only(top: 3),
+                              child:
+                                  widget6('No', 'Nama Barang', 'Qty', 'Satuan'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5.0, left: 0),
+                              child: Container(
+                                height: 1.0,
+                                width: 400.0,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 3),
+                              child: widget7(
+                                  '1', 'NPK 15-10-12 SUB @50KG', '30', 'TON'),
+                            ),
+                            /*Padding(
+                          padding: const EdgeInsets.only(top: 3),
+                          child: widget4(
+                              '1 \t \t \t \t \t  NPK 15-10-12 SUB @50KG \t \t \t \t \t \t \t \t  30 \t \t \t \t \t \t \t \t \t \tTON'),
+                        ),*/
+                            Padding(
+                              padding: const EdgeInsets.only(top: 3),
+                              child: widget3(
+                                  'Hal-hal lain yang belum tercantum dalam dokumen ini, agar'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3(
+                                  'merujuk kepada surat perjanjian antara rekanan dengan '),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 0),
+                              child: widget3('PT. Pupuk Sriwidjaja Palembang.'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 3),
+                              child: widget4('Belum Cut Off'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 3, left: 35),
+                              child: widget3(
+                                  'RESTA JAYA \t \t  PT. Pupuk Sriwidjaja Palembang'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 30, left: 35),
+                              child: widget3('......................'),
+                            ),
+                          ]),
+                        )
+                      ]))
+            ])));
+  }
+}
+
+Widget widget1(String firstTitle) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: <Widget>[
+      Padding(
+        padding: const EdgeInsets.only(left: 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              firstTitle,
+              style: TextStyle(
+                  color: Colors.green.shade900,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold),
             ),
-            automaticallyImplyLeading: false,
-            actions: [
-              IconButton(
-                icon: Icon(Icons.print),
-                onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => HomePage()));
-                },
+          ],
+        ),
+      ),
+    ],
+  );
+}
+
+Widget widget2(String firstTitle) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: <Widget>[
+      Padding(
+        padding: const EdgeInsets.only(left: 5),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              firstTitle,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold),
+            )
+          ],
+        ),
+      ),
+    ],
+  );
+}
+
+Widget widget3(String firstTitle) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: <Widget>[
+      Padding(
+        padding: const EdgeInsets.only(left: 5),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              firstTitle,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
               ),
-              IconButton(
-                icon: Icon(Icons.close),
-                onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => datatiket()));
-                },
+            )
+          ],
+        ),
+      ),
+    ],
+  );
+}
+
+Widget widget4(String firstTitle) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: <Widget>[
+      Padding(
+        padding: const EdgeInsets.only(left: 5),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              firstTitle,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.green.shade900,
+                fontSize: 14,
+              ),
+            )
+          ],
+        ),
+      ),
+    ],
+  );
+}
+
+Widget widget5(String firstTitle, String firstDesc) {
+  return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(left: 5),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    firstTitle,
+                    style: TextStyle(color: Colors.black, fontSize: 12),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 0, left: 0),
+                    child: Text(
+                      firstDesc,
+                      style: TextStyle(
+                        color: Colors.green.shade900,
+                        fontSize: 12,
+                      ),
+                    ),
+                  )
+                ],
               ),
             ],
           ),
-        ),
-        body: Padding(
-            padding: EdgeInsets.only(top: 0),
-            child: Stack(alignment: AlignmentDirectional.center, children: <
-                Widget>[
-              Positioned(
-                top: 5,
-                child: Column(
-                  children: [
-                    Text(
-                      "Stock Transport Order",
-                      textAlign: TextAlign.center,
+        )
+      ]);
+}
+
+Widget widget6(
+    String firstTitle, String firstDesc, String secondDesc, String thirdDesc) {
+  return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(left: 5),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    firstTitle,
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 0, left: 20),
+                    child: Text(
+                      firstDesc,
                       style: TextStyle(
-                          color: Colors.green.shade900,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14),
-                    ),
-                  ],
-                ),
-              ),
-              Positioned(
-                top: 20,
-                child: Column(
-                  children: [
-                    Text(
-                      "No. Po 5000000123",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.green.shade900,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14),
-                    ),
-                  ],
-                ),
-              ),
-              Positioned(
-                top: 35,
-                child: Column(
-                  children: [
-                    Text(
-                      "Tanggal : 01 Februari 2022",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.green.shade900,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0),
-                  child:
-                      Stack(alignment: AlignmentDirectional.center, children: <
-                          Widget>[
-                    Positioned(
-                      top: 57,
-                      left: 0,
-                      child: Container(
-                        height: 1.0,
-                        width: 400.0,
                         color: Colors.black,
                       ),
                     ),
-                    Positioned(
-                      top: 62,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Kepada Yth:",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
-                          ),
-                        ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 0, left: 128),
+                    child: Text(
+                      secondDesc,
+                      style: TextStyle(
+                        color: Colors.black,
                       ),
                     ),
-                    Positioned(
-                      top: 80,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "RESTA JAYA",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 0, left: 70),
+                    child: Text(
+                      thirdDesc,
+                      style: TextStyle(
+                        color: Colors.black,
                       ),
                     ),
-                    Positioned(
-                      top: 95,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Indonesia",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
+                  )
+                ],
+              ),
+            ],
+          ),
+        )
+      ]);
+}
+
+Widget widget7(
+    String firstTitle, String firstDesc, String secondDesc, String thirdDesc) {
+  return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(left: 5),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    firstTitle,
+                    style: TextStyle(color: Colors.green.shade900),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 0, left: 30),
+                    child: Text(
+                      firstDesc,
+                      style: TextStyle(
+                        color: Colors.green.shade900,
                       ),
                     ),
-                    Positioned(
-                      top: 110,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Mohon diangkut barang berikut:",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 0, left: 42),
+                    child: Text(
+                      secondDesc,
+                      style: TextStyle(
+                        color: Colors.green.shade900,
                       ),
                     ),
-                    Positioned(
-                      top: 125,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Asal Barang",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
-                          ),
-                        ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 0, left: 82),
+                    child: Text(
+                      thirdDesc,
+                      style: TextStyle(
+                        color: Colors.green.shade900,
                       ),
                     ),
-                    Positioned(
-                      top: 140,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Gudang Muat PKC, PKC",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 155,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Karawang",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 170,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Karawang",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 185,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Indonesia",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 200,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Tujuan Barang",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 215,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "BKS Cikarang, PKC",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 230,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Jl. Jendral Urip Sumoharjo No 238, Tanjungbaru, Kec. Cikarang Timur, Kab. Bekasi ",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 245,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Kab. Bekasi",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 260,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Jawa Barat",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 275,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Indonesia",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 290,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Moda",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 290,
-                      left: 175,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Truk",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.green.shade900,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 305,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Kondisi Penyerahan",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 305,
-                      left: 175,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Diserahkan di depan pintu gerbang",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.green.shade900,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 320,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Referensi",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 335,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Pemilik Barang",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 335,
-                      left: 175,
-                      child: Column(
-                        children: [
-                          Text(
-                            "PT. Pupuk Sriwidjaja",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.green.shade900,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 320,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Referensi",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 350,
-                      left: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            "Batas Waktu Pengambilan",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 350,
-                      left: 175,
-                      child: Column(
-                        children: [
-                          Text(
-                            "28 Februari 2022",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Colors.green.shade900,
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.normal,
-                                fontSize: 14),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 0.0),
-                        child: Stack(
-                            alignment: AlignmentDirectional.center,
-                            children: <Widget>[
-                              Positioned(
-                                top: 370,
-                                child: Container(
-                                  height: 1.0,
-                                  width: 450.0,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              Positioned(
-                                top: 375,
-                                left: 0,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "No",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 14),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                top: 375,
-                                left: 70,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "Nama Barang",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 14),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                top: 375,
-                                left: 265,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "Qty",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 14),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                top: 375,
-                                left: 347,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "Satuan",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 14),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 0.0),
-                                  child: Stack(
-                                      alignment: AlignmentDirectional.center,
-                                      children: <Widget>[
-                                        Positioned(
-                                          top: 395,
-                                          child: Container(
-                                            height: 1.0,
-                                            width: 450.0,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                        Positioned(
-                                          top: 400,
-                                          left: 0,
-                                          child: Column(
-                                            children: [
-                                              Text(
-                                                "1",
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                    color:
-                                                        Colors.green.shade900,
-                                                    fontFamily: 'Inter',
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    fontSize: 14),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Positioned(
-                                          top: 400,
-                                          left: 70,
-                                          child: Column(
-                                            children: [
-                                              Text(
-                                                "NPK 15-10-12 SUB @50KG",
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                    color:
-                                                        Colors.green.shade900,
-                                                    fontFamily: 'Inter',
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    fontSize: 14),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Positioned(
-                                          top: 400,
-                                          left: 266.5,
-                                          child: Column(
-                                            children: [
-                                              Text(
-                                                "30",
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                    color:
-                                                        Colors.green.shade900,
-                                                    fontFamily: 'Inter',
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    fontSize: 14),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Positioned(
-                                          top: 400,
-                                          left: 352,
-                                          child: Column(
-                                            children: [
-                                              Text(
-                                                "TON",
-                                                textAlign: TextAlign.left,
-                                                style: TextStyle(
-                                                    color:
-                                                        Colors.green.shade900,
-                                                    fontFamily: 'Inter',
-                                                    fontWeight:
-                                                        FontWeight.normal,
-                                                    fontSize: 14),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 0.0),
-                                            child: Stack(
-                                                alignment:
-                                                    AlignmentDirectional.center,
-                                                children: <Widget>[
-                                                  Positioned(
-                                                    top: 420,
-                                                    child: Container(
-                                                      height: 1.0,
-                                                      width: 450.0,
-                                                      color: Colors.black,
-                                                    ),
-                                                  ),
-                                                  Positioned(
-                                                    top: 430,
-                                                    left: 0,
-                                                    child: Column(
-                                                      children: [
-                                                        Text(
-                                                          "Hal-hal lain yang belum tercantum dalam dokumen ini,",
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                              fontSize: 14),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Positioned(
-                                                    top: 445,
-                                                    left: 0,
-                                                    child: Column(
-                                                      children: [
-                                                        Text(
-                                                          "agar merujuk kepada surat perjanjian antara rekanan dengan ",
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                              fontSize: 14),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Positioned(
-                                                    top: 460,
-                                                    left: 0,
-                                                    child: Column(
-                                                      children: [
-                                                        Text(
-                                                          "PT. Pupuk Sriwidjaja Palembang.",
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                              fontSize: 14),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Positioned(
-                                                    top: 480,
-                                                    left: 0,
-                                                    child: Column(
-                                                      children: [
-                                                        Text(
-                                                          "Belum Cut Off",
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          style: TextStyle(
-                                                              color: Colors
-                                                                  .green
-                                                                  .shade900,
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                              fontSize: 14),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Positioned(
-                                                    top: 510,
-                                                    left: 30,
-                                                    child: Column(
-                                                      children: [
-                                                        Text(
-                                                          "RESTA JAYA",
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                              fontSize: 14),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Positioned(
-                                                    top: 510,
-                                                    left: 155,
-                                                    child: Column(
-                                                      children: [
-                                                        Text(
-                                                          "PT. Pupuk Sriwidjaja Palembang",
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                              fontSize: 14),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Positioned(
-                                                    top: 575,
-                                                    left: 30,
-                                                    child: Column(
-                                                      children: [
-                                                        Text(
-                                                          "......................",
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                              fontSize: 14),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Positioned(
-                                                      top: 85,
-                                                      right: 18,
-                                                      child: Container(
-                                                          width: 125,
-                                                          height: 125,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            image: DecorationImage(
-                                                                image: AssetImage(
-                                                                    'images/kode.png'),
-                                                                fit: BoxFit
-                                                                    .fitWidth),
-                                                          ))),
-                                                  /*Positioned(
-                                                    top: 560,
-                                                    right: 10,
-                                                    bottom: 0,
-                                                    child: Column(
-                                                      children: [
-                                                        MaterialButton(
-                                                          onPressed: () {
-                                                            Navigator.of(
-                                                                    context)
-                                                                .push(MaterialPageRoute(
-                                                                    builder:
-                                                                        (context) =>
-                                                                            HomePage()));
-                                                          },
-                                                          height: 30,
-                                                          minWidth: 1,
-                                                          shape:
-                                                              const StadiumBorder(),
-                                                          color: Color.fromARGB(
-                                                              200,
-                                                              239,
-                                                              243,
-                                                              31),
-                                                          child: const Text(
-                                                            "Cetak POSTO",
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .black,
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),*/
-                                                ]))
-                                      ]))
-                            ]))
-                  ]))
-            ])));
-  }
+                  )
+                ],
+              ),
+            ],
+          ),
+        )
+      ]);
 }

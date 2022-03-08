@@ -85,30 +85,32 @@ class CustomCard2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Card(
-      child: new Column(
-        children: <Widget>[
-          new Padding(
-            padding: new EdgeInsets.all(7.0),
-            child: new Row(
-              children: <Widget>[
-                Text(
-                  "SISTRO_RJ_UQJ1Km2Fq \n\n23 Februari 2022 | 12:21:35",
-                  style: TextStyle(
-                      letterSpacing: 1.0,
-                      fontWeight: FontWeight.bold // default is 0.0
-                      ),
-                ),
-                Text(
-                  "        SIPANDA \n\n        AD 8973 DC",
-                  style: TextStyle(
-                      letterSpacing: 1.0,
-                      fontWeight: FontWeight.bold // default is 0.0
-                      ),
-                ),
-              ],
-            ),
-          )
-        ],
+      child: SingleChildScrollView(
+        child: new Column(
+          children: <Widget>[
+            new Padding(
+              padding: new EdgeInsets.all(0),
+              child: new Row(
+                children: <Widget>[
+                  Text(
+                    "SISTRO_RJ_UQJ1Km2Fq \n\n23 Februari 2022 | 12:21:35",
+                    style: TextStyle(
+                        letterSpacing: 1.0,
+                        fontWeight: FontWeight.bold // default is 0.0
+                        ),
+                  ),
+                  Text(
+                    "  SIPANDA \n\n   AD 8973 DC",
+                    style: TextStyle(
+                        letterSpacing: 1.0,
+                        fontWeight: FontWeight.bold // default is 0.0
+                        ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
