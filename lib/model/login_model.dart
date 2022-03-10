@@ -1,32 +1,37 @@
-class LoginResponseModel {
-  final String token;
-  final String error;
+// To parse this JSON data, do
+//
+//     final userModel = userModelFromJson(jsonString);
 
-  LoginResponseModel({required this.token, required this.error});
+import 'dart:convert';
+import 'package:sistro_app/screen/login.dart';
 
-  factory LoginResponseModel.fromJson(Map<String, dynamic> json) {
-    return LoginResponseModel(
-      token: json["token"] != null ? json["token"] : "",
-      error: json["error"] != null ? json["error"] : "",
-    );
-  }
-}
+UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
 
-class LoginRequestModel {
+String userModelToJson(UserModel data) => json.encode(data.toJson());
+
+class UserModel {
   String username;
   String password;
 
-  LoginRequestModel({
+  //DateTime createdAt;
+
+  UserModel({
     required this.username,
     required this.password,
+    // this.createdAt,
   });
 
-  Map<String, dynamic> toJson() {
-    Map<String, dynamic> map = {
-      'username': username.trim(),
-      'password': password.trim(),
-    };
+  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
+        username: json["username"],
+        password: json["password"],
 
-    return map;
-  }
+        //createdAt: DateTime.parse(json["createdAt"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "username": username,
+        "password": password,
+
+        //"createdAt": createdAt.toIso8601String(),
+      };
 }

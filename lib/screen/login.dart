@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:sistro_app/screen/homepage.dart';
-import 'package:http/http.dart';
+import 'package:sistro_app/model/login_model.dart';
+import 'package:sistro_app/api/api_service.dart';
+
+import 'package:http/http.dart' as http;
 
 class login extends StatefulWidget {
   static const String id = "sign_up_page";
@@ -11,9 +14,27 @@ class login extends StatefulWidget {
   LoginPageState createState() => LoginPageState();
 }
 
+// Future<UserModel?> createUser(String username, String password) async {
+//   final String url = "http://sistro-pi-dev.petrokimia-gresik.com/token";
+
+//   final response = await http
+//       .post(Uri.parse(url), body: {"username": username, "password": password});
+
+//   if (response.statusCode == 201) {
+//     final String responseString = response.body;
+
+//     return userModelFromJson(responseString);
+//   } else {
+//     return null;
+//   }
+// }
+
 class LoginPageState extends State<login> {
   bool passenable = true;
   String dropdownValue = '';
+  var usernameController = TextEditingController();
+  var passController = TextEditingController();
+  String grant_type = 'password';
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +105,9 @@ class LoginPageState extends State<login> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Column(children: [
-                          TextField(
+                          TextFormField(
+                            keyboardType: TextInputType.text,
+                            controller: usernameController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               contentPadding: EdgeInsets.symmetric(
@@ -96,8 +119,10 @@ class LoginPageState extends State<login> {
                           SizedBox(
                             height: 10,
                           ),
-                          TextField(
+                          TextFormField(
                             obscureText: passenable,
+                            keyboardType: TextInputType.text,
+                            controller: passController,
                             decoration: InputDecoration(
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 5, horizontal: 10),
@@ -159,8 +184,7 @@ class LoginPageState extends State<login> {
                       ),
                       MaterialButton(
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => HomePage()));
+                          login();
                         },
                         height: 45,
                         minWidth: 240,
@@ -183,5 +207,33 @@ class LoginPageState extends State<login> {
         ),
       ),
     );
+  }
+
+  Future<void> login() async {
+    if (passController.text.isNotEmpty && usernameController.text.isNotEmpty) {
+      var response = await http.post(Uri.parse("https://reqres.in/api/login"),
+          headers: {
+            "Accept": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          },
+          body: ({
+            'grant_type': grant_type,
+            'username': usernameController.text,
+            'password': passController.text
+          }));
+      if (response.statusCode == 200) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Login Sukses")));
+        print("Login Sukses (200)");
+      } else {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Invalid")));
+      }
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Login Tidak Berhasil")));
+    }
   }
 }

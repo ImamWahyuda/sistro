@@ -5,6 +5,7 @@ import 'package:sistro_app/screen/login.dart';
 import 'package:sistro_app/screen/datatiket.dart';
 import 'package:sistro_app/screen/pesantiket.dart';
 import 'package:sistro_app/screen/tiketbaru.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_ticket_widget/flutter_ticket_widget.dart';
 
@@ -213,7 +214,9 @@ showAlertDialog(BuildContext context) {
   //kembali ke login
   Widget continueButton = TextButton(
     child: Text("Continue"),
-    onPressed: () {},
+    onPressed: () {
+      SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+    },
   );
 
   // set up the AlertDialog
