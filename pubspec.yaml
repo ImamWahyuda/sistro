@@ -44,6 +44,11 @@ dependencies:
   ticket_material: ^0.1.0
   flutter_datetime_picker: ^1.5.1
   shared_preferences: ^2.0.6
+  get: 4.3.8
+  pdf: 3.6.2
+  path_provider: 2.0.7
+  open_file: 3.2.1
+  
  
   
    
@@ -79,6 +84,9 @@ flutter:
     - images/tiketbaru.png
     - images/barcode.png
     - images/kode.png
+    - assets/kode.png
+    - assets/barcode.png
+    - assets/logosistro.png
   
   #   - images/a_dot_ham.jpeg
 

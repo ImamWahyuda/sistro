@@ -14,21 +14,6 @@ class login extends StatefulWidget {
   LoginPageState createState() => LoginPageState();
 }
 
-// Future<UserModel?> createUser(String username, String password) async {
-//   final String url = "http://sistro-pi-dev.petrokimia-gresik.com/token";
-
-//   final response = await http
-//       .post(Uri.parse(url), body: {"username": username, "password": password});
-
-//   if (response.statusCode == 201) {
-//     final String responseString = response.body;
-
-//     return userModelFromJson(responseString);
-//   } else {
-//     return null;
-//   }
-// }
-
 class LoginPageState extends State<login> {
   bool passenable = true;
   String dropdownValue = '';
@@ -211,13 +196,14 @@ class LoginPageState extends State<login> {
 
   Future<void> login() async {
     if (passController.text.isNotEmpty && usernameController.text.isNotEmpty) {
-      var response = await http.post(Uri.parse("https://reqres.in/api/login"),
+      var response = await http.post(
+          Uri.parse("http://sistro-pi-dev.petrokimia-gresik.com/token"),
           headers: {
             "Accept": "application/json",
             "Access-Control-Allow-Origin": "*"
           },
           body: ({
-            'grant_type': grant_type,
+            'grant_type': 'password',
             'username': usernameController.text,
             'password': passController.text
           }));

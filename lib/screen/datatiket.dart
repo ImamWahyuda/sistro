@@ -51,13 +51,13 @@ class _datatiketState extends State<datatiket>
             bottom: TabBar(
               controller: controller,
               tabs: [
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text("Status Tiket", style: TextStyle(fontSize: 15.0)),
+                new Tab(
+                  icon: new Icon(Icons.all_inbox_rounded),
+                  text: "Status Tiket",
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Text("Riwayat", style: TextStyle(fontSize: 15.0)),
+                new Tab(
+                  icon: new Icon(Icons.assignment_rounded),
+                  text: "Riwayat Tiket",
                 ),
               ],
             ),
@@ -189,7 +189,7 @@ class CustomCard extends StatelessWidget {
                             )),
                         Positioned(
                             top: 155,
-                            left: 249,
+                            left: 145,
                             child: Container(
                                 width: 121,
                                 height: 30,
@@ -209,6 +209,36 @@ class CustomCard extends StatelessWidget {
                                       color: Colors.green.shade900,
                                       child: const Text(
                                         "Print",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                  ),
+                                ]))),
+                        Positioned(
+                            top: 155,
+                            left: 253,
+                            child: Container(
+                                width: 121,
+                                height: 30,
+                                child: Stack(children: <Widget>[
+                                  Positioned(
+                                    top: 1,
+                                    left: 20,
+                                    right: 3,
+                                    bottom: 2,
+                                    child: MaterialButton(
+                                      onPressed: () {
+                                        TabBar;
+                                      },
+                                      height: 33,
+                                      minWidth: 100,
+                                      shape: const StadiumBorder(),
+                                      color: Colors.green.shade900,
+                                      child: const Text(
+                                        "Selesai",
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 12,

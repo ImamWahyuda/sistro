@@ -6,15 +6,41 @@ import 'package:sistro_app/screen/datatiket.dart';
 import 'package:sistro_app/screen/pesantiket.dart';
 import 'package:sistro_app/screen/tiketbaru.dart';
 import 'package:flutter/services.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 import 'package:flutter_ticket_widget/flutter_ticket_widget.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    getData().then((value) {
+      setState(() {
+        infos = value;
+      });
+    });
+  }
+
+  var infos;
+  getData() async {
+    String myUrl = "https://reqres.in/api/users/2";
+    var req = await http.get(Uri.parse(myUrl));
+    infos = json.decode(req.body);
+    print(infos['first_name']);
+    return infos['first_name'];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.0), // here the desired height
+        preferredSize: Size.fromHeight(50.0),
         child: AppBar(
           backgroundColor: Colors.green.shade900,
           title: Column(children: <Widget>[
@@ -56,16 +82,7 @@ class HomePage extends StatelessWidget {
           Positioned(
               top: 15,
               left: 35,
-              child: Text(
-                'Resta Jaya',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Color.fromRGBO(0, 0, 0, 1),
-                    fontSize: 22,
-                    letterSpacing: 0,
-                    height: 1.5 /*PERCENT not supported*/
-                    ),
-              )),
+              child: infos == null ? new Text('Resta Jaya') : Text(infos)),
           Positioned(
             top: 101,
             left: 17,
@@ -236,4 +253,19 @@ showAlertDialog(BuildContext context) {
       return alert;
     },
   );
+}
+
+class User {
+  String name;
+  String id;
+  User({required this.id, required this.name});
+  factory User.createUser(Map<String, dynamic> object) {
+    return User(id: object['id'], name: object['first_name']);
+  }
+}
+
+Future<List<dynamic>> _fecthDataUsers(String id) async {
+  Uri apiURL = Uri.parse('https:reqres.in/api/users/' + id);
+  var result = await http.get(apiURL);
+  return json.decode(result.body)['data'];
 }

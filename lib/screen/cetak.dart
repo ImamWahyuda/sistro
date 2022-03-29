@@ -3,6 +3,16 @@ import 'package:sistro_app/screen/datatiket.dart';
 import 'package:sistro_app/screen/homepage.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+
 class CetakTiket extends StatefulWidget {
   CetakTiket({Key? key}) : super(key: key);
 
@@ -32,8 +42,7 @@ class _CetakTiketState extends State<CetakTiket> {
               IconButton(
                 icon: Icon(Icons.print),
                 onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => HomePage()));
+                  _createPDF();
                 },
               ),
               IconButton(
@@ -272,4 +281,180 @@ Widget widget6(Image) {
                   fit: BoxFit.fitWidth),
             ))),
   ]);
+}
+
+void _createPDF() async {
+  // buat class pdf
+  final pdf = pw.Document();
+
+// my images
+  var dataImage = await rootBundle.load("assets/kode.png");
+  var myImage = dataImage.buffer.asUint8List();
+
+  var dataImage2 = await rootBundle.load("assets/barcode.png");
+  var myImage2 = dataImage2.buffer.asUint8List();
+
+  var dataImage3 = await rootBundle.load("assets/logosistro.png");
+  var myImage3 = dataImage3.buffer.asUint8List();
+
+  // buat pages
+  pdf.addPage(
+    pw.MultiPage(
+      pageFormat: PdfPageFormat.a4,
+      build: (pw.Context context) {
+        return [
+          pw.SizedBox(width: 0, height: 0),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 0),
+              child: pw.Container(
+                  width: 600,
+                  height: 50,
+                  color: PdfColors.green900,
+                  child: pw.Container(
+                    child: pw.Image(
+                      pw.MemoryImage(myImage3),
+                      fit: pw.BoxFit.fitHeight,
+                    ),
+                  ))),
+          pw.SizedBox(width: 600, height: 0),
+          pw.Container(
+              color: PdfColors.green900,
+              alignment: pw.Alignment.centerLeft,
+              width: 600,
+              height: 50,
+              child: pw.Text("Tiket Pemuatan",
+                  style: pw.TextStyle(
+                    fontSize: 20,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.white,
+                  ))),
+          pw.SizedBox(width: 0, height: 0),
+          pw.Container(
+              color: PdfColors.grey50,
+              alignment: pw.Alignment.centerLeft,
+              width: 600,
+              height: 50,
+              child: pw.Text("Detail Transportir",
+                  style: pw.TextStyle(
+                    fontSize: 20,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.SizedBox(width: 600, height: 10),
+          pw.Text(
+            "Kode Booking \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t SISTRO_RJ_UQJ1Km2Fq",
+            textAlign: pw.TextAlign.left,
+            style: pw.TextStyle(color: PdfColors.black, fontSize: 16),
+          ),
+          pw.SizedBox(width: 600, height: 5),
+          pw.Text(
+            "Nama Transportir \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Resta Jaya",
+            textAlign: pw.TextAlign.left,
+            style: pw.TextStyle(color: PdfColors.black, fontSize: 16),
+          ),
+          pw.SizedBox(width: 600, height: 5),
+          pw.Text(
+            "Nama Driver \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t SIPANDA",
+            textAlign: pw.TextAlign.left,
+            style: pw.TextStyle(color: PdfColors.black, fontSize: 16),
+          ),
+          pw.SizedBox(width: 600, height: 5),
+          pw.Text(
+            "Nopol Armada \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t AD 8973 DC",
+            textAlign: pw.TextAlign.left,
+            style: pw.TextStyle(color: PdfColors.black, fontSize: 16),
+          ),
+          pw.SizedBox(width: 600, height: 10),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 350),
+              child: pw.Container(
+                width: 120,
+                height: 120,
+                child: pw.Image(
+                  pw.MemoryImage(myImage),
+                  fit: pw.BoxFit.cover,
+                ),
+              )),
+          pw.SizedBox(width: 600, height: 20),
+          pw.Container(
+              color: PdfColors.green900,
+              alignment: pw.Alignment.centerLeft,
+              width: 600,
+              height: 50,
+              child: pw.Text("Detail Delivery Order",
+                  style: pw.TextStyle(
+                    fontSize: 20,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.white,
+                  ))),
+          pw.SizedBox(width: 600, height: 10),
+          pw.Text(
+            "POSTO \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t 532004887857",
+            textAlign: pw.TextAlign.left,
+            style: pw.TextStyle(color: PdfColors.black, fontSize: 16),
+          ),
+          pw.SizedBox(width: 600, height: 5),
+          pw.Text(
+            "Gudang Asal \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Gudang Muat PKC",
+            textAlign: pw.TextAlign.left,
+            style: pw.TextStyle(color: PdfColors.black, fontSize: 16),
+          ),
+          pw.SizedBox(width: 600, height: 5),
+          pw.Text(
+            "Gudang Tujuan \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t BDG 1NAGREG",
+            textAlign: pw.TextAlign.left,
+            style: pw.TextStyle(color: PdfColors.black, fontSize: 16),
+          ),
+          pw.SizedBox(width: 600, height: 5),
+          pw.Text(
+            "Produk \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t UREA SUB @50 KG",
+            textAlign: pw.TextAlign.left,
+            style: pw.TextStyle(color: PdfColors.black, fontSize: 16),
+          ),
+          pw.SizedBox(width: 600, height: 5),
+          pw.Text(
+            "Tonase (Ton) \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t 17",
+            textAlign: pw.TextAlign.left,
+            style: pw.TextStyle(color: PdfColors.black, fontSize: 16),
+          ),
+          pw.SizedBox(width: 600, height: 5),
+          pw.Text(
+            "Tanggal Muat \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t '3 Februari 2022",
+            textAlign: pw.TextAlign.left,
+            style: pw.TextStyle(color: PdfColors.black, fontSize: 16),
+          ),
+          pw.SizedBox(width: 600, height: 5),
+          pw.Text(
+            "Shift \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Shift 1",
+            textAlign: pw.TextAlign.left,
+            style: pw.TextStyle(color: PdfColors.black, fontSize: 16),
+          ),
+          pw.SizedBox(width: 600, height: 20),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 65),
+              child: pw.Container(
+                width: 350,
+                height: 70,
+                child: pw.Image(
+                  pw.MemoryImage(myImage2),
+                  fit: pw.BoxFit.cover,
+                ),
+              )),
+        ];
+      },
+    ),
+  ); // Page
+
+  // simpan
+  Uint8List bytes = await pdf.save();
+
+  // buat file kosong di direktori
+  final dir = await getApplicationDocumentsDirectory();
+  final file = File('${dir.path}/cetaktiket.pdf');
+
+  // timpa file kosong dengan file pdf
+  await file.writeAsBytes(bytes);
+
+  // open pdf
+  await OpenFile.open(file.path);
 }

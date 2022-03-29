@@ -3,6 +3,16 @@ import 'package:sistro_app/screen/datatiket.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:sistro_app/screen/homepage.dart';
 
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+
 class CetakPosto extends StatefulWidget {
   CetakPosto({Key? key}) : super(key: key);
 
@@ -11,15 +21,6 @@ class CetakPosto extends StatefulWidget {
 }
 
 class _CetakPostoState extends State<CetakPosto> {
-  String dropdownValue = '';
-  final dateController = TextEditingController();
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is removed
-    dateController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,8 +42,7 @@ class _CetakPostoState extends State<CetakPosto> {
                 IconButton(
                   icon: Icon(Icons.print),
                   onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => HomePage()));
+                    _createPDF();
                   },
                 ),
                 IconButton(
@@ -525,4 +525,526 @@ Widget widget7(
           ),
         )
       ]);
+}
+
+void _createPDF() async {
+  // buat class pdf
+  final pdf = pw.Document();
+
+// my images
+  var dataImage = await rootBundle.load("assets/kode.png");
+  var myImage = dataImage.buffer.asUint8List();
+
+  var dataImage3 = await rootBundle.load("assets/logosistro.png");
+  var myImage3 = dataImage3.buffer.asUint8List();
+
+  // buat pages
+  pdf.addPage(
+    pw.MultiPage(
+      pageFormat: PdfPageFormat.a4,
+      build: (pw.Context context) {
+        return [
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 0),
+              child: pw.Container(
+                  width: 600,
+                  height: 25,
+                  color: PdfColors.green900,
+                  child: pw.Container(
+                    child: pw.Image(
+                      pw.MemoryImage(myImage3),
+                      fit: pw.BoxFit.fitHeight,
+                    ),
+                  ))),
+          pw.Center(
+              child: pw.Text("Stock Transport Order",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.bold,
+                    color: PdfColors.green900,
+                  ))),
+          pw.Center(
+              child: pw.Text("No. Po 5000000123",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.bold,
+                    color: PdfColors.green900,
+                  ))),
+          pw.Center(
+              child: pw.Text("Tanggal : 01 Februari 2022",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.bold,
+                    color: PdfColors.green900,
+                  ))),
+          pw.Padding(
+            padding: pw.EdgeInsets.only(top: 5, left: 0),
+            child: pw.Container(
+              height: 1.0,
+              width: 600.0,
+              color: PdfColors.black,
+            ),
+          ),
+          /*  pw.Padding(
+              padding: pw.EdgeInsets.only(top: 5, left: 320),
+              child: pw.Container(
+                width: 150,
+                height: 150,
+                child: pw.Image(
+                  pw.MemoryImage(myImage),
+                  fit: pw.BoxFit.cover,
+                ),
+              )),*/
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 5),
+              child: pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: <pw.Widget>[
+                    pw.Row(
+                        mainAxisAlignment: pw.MainAxisAlignment.start,
+                        children: <pw.Widget>[
+                          pw.Text(
+                            '',
+                            textAlign: pw.TextAlign.left,
+                            style: pw.TextStyle(
+                                color: PdfColors.green900, fontSize: 16),
+                          ),
+                          pw.Padding(
+                              padding: pw.EdgeInsets.only(top: 0, left: 0),
+                              child: pw.Container(
+                                width: 150,
+                                height: 150,
+                                child: pw.Image(
+                                  pw.MemoryImage(myImage),
+                                  fit: pw.BoxFit.cover,
+                                ),
+                              )),
+                        ])
+                  ])),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 5, left: 0),
+              child: pw.Text("Kepada Yth:",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.bold,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 0),
+              child: pw.Text("RESTA JAYA",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 0),
+              child: pw.Text("Indonesia",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 0),
+              child: pw.Text("Mohon diangkut barang berikut:",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 5, left: 0),
+              child: pw.Text("Asal Barang",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.bold,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 0),
+              child: pw.Text("Gudang Muat PKC, PKC",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 0),
+              child: pw.Text("Karawang",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 0),
+              child: pw.Text("Karawang",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 0),
+              child: pw.Text("Indonesia",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 5, left: 0),
+              child: pw.Text("Tujuan Barang",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.bold,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 0),
+              child: pw.Text("BKS Cikarang, PKC",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 0),
+              child: pw.Text("Jl. Jendral Urip Sumoharjo No 238, Tanjungbaru, ",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 0),
+              child: pw.Text("Kec. Cikarang Timur, Kab. Bekasi",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 0),
+              child: pw.Text("Kab. Bekasi",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 0),
+              child: pw.Text("Jawa Barat",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 0),
+              child: pw.Text("Indonesia",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+            padding: pw.EdgeInsets.only(top: 5, left: 0),
+            child: pw.Container(
+              height: 1.0,
+              width: 600.0,
+              color: PdfColors.black,
+            ),
+          ),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 5),
+              child: pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: <pw.Widget>[
+                    pw.Row(
+                        mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                        children: <pw.Widget>[
+                          pw.Text(
+                            'Moda',
+                            style: pw.TextStyle(
+                                color: PdfColors.black, fontSize: 14),
+                          ),
+                          pw.Padding(
+                            padding: pw.EdgeInsets.only(top: 0, left: 0),
+                            child: pw.Text(
+                              'Truk',
+                              style: pw.TextStyle(
+                                color: PdfColors.green900,
+                                fontSize: 14,
+                              ),
+                            ),
+                          )
+                        ])
+                  ])),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(),
+              child: pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: <pw.Widget>[
+                    pw.Row(
+                        mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                        children: <pw.Widget>[
+                          pw.Text(
+                            'Kondisi Penyerahan',
+                            style: pw.TextStyle(
+                                color: PdfColors.black, fontSize: 14),
+                          ),
+                          pw.Padding(
+                            padding: pw.EdgeInsets.only(top: 0, left: 0),
+                            child: pw.Text(
+                              'Diserahkan di depan pintu gerbang',
+                              style: pw.TextStyle(
+                                color: PdfColors.green900,
+                                fontSize: 14,
+                              ),
+                            ),
+                          )
+                        ])
+                  ])),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 0),
+              child: pw.Text("Referensi",
+                  style: pw.TextStyle(
+                    fontSize: 14,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(),
+              child: pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: <pw.Widget>[
+                    pw.Row(
+                        mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                        children: <pw.Widget>[
+                          pw.Text(
+                            'Pemilik Barang',
+                            style: pw.TextStyle(
+                                color: PdfColors.black, fontSize: 14),
+                          ),
+                          pw.Padding(
+                            padding: pw.EdgeInsets.only(top: 0, left: 0),
+                            child: pw.Text(
+                              'PT. Pupuk Sriwidjaja',
+                              style: pw.TextStyle(
+                                color: PdfColors.green900,
+                                fontSize: 14,
+                              ),
+                            ),
+                          )
+                        ])
+                  ])),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(),
+              child: pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: <pw.Widget>[
+                    pw.Row(
+                        mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                        children: <pw.Widget>[
+                          pw.Text(
+                            'Batas Waktu Pengambilan ',
+                            style: pw.TextStyle(
+                                color: PdfColors.black, fontSize: 14),
+                          ),
+                          pw.Padding(
+                            padding: pw.EdgeInsets.only(top: 0, left: 0),
+                            child: pw.Text(
+                              '28 Februari 2022',
+                              style: pw.TextStyle(
+                                color: PdfColors.green900,
+                                fontSize: 14,
+                              ),
+                            ),
+                          )
+                        ])
+                  ])),
+          pw.Padding(
+            padding: pw.EdgeInsets.only(top: 5, left: 0),
+            child: pw.Container(
+              height: 1.0,
+              width: 600.0,
+              color: PdfColors.black,
+            ),
+          ),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 5),
+              child: pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: <pw.Widget>[
+                    pw.Row(
+                        mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                        children: <pw.Widget>[
+                          pw.Text(
+                            'No',
+                            style: pw.TextStyle(
+                                color: PdfColors.black, fontSize: 16),
+                          ),
+                          pw.Padding(
+                            padding: pw.EdgeInsets.only(top: 0, left: 20),
+                            child: pw.Text(
+                              'Nama Barang',
+                              style: pw.TextStyle(
+                                color: PdfColors.black,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          pw.Padding(
+                            padding: pw.EdgeInsets.only(top: 0, left: 170),
+                            child: pw.Text(
+                              'Qty',
+                              style: pw.TextStyle(
+                                color: PdfColors.black,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          pw.Padding(
+                            padding: pw.EdgeInsets.only(top: 0, left: 70),
+                            child: pw.Text(
+                              'Satuan',
+                              style: pw.TextStyle(
+                                color: PdfColors.black,
+                                fontSize: 16,
+                              ),
+                            ),
+                          )
+                        ])
+                  ])),
+          pw.Padding(
+            padding: pw.EdgeInsets.only(top: 5, left: 0),
+            child: pw.Container(
+              height: 1.0,
+              width: 600.0,
+              color: PdfColors.black,
+            ),
+          ),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 5),
+              child: pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: <pw.Widget>[
+                    pw.Row(
+                        mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                        children: <pw.Widget>[
+                          pw.Text(
+                            '1',
+                            style: pw.TextStyle(
+                                color: PdfColors.green900, fontSize: 16),
+                          ),
+                          pw.Padding(
+                            padding: pw.EdgeInsets.only(top: 0, left: 0),
+                            child: pw.Text(
+                              'NPK 15-10-12 SUB @50KG',
+                              style: pw.TextStyle(
+                                color: PdfColors.green900,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          pw.Padding(
+                            padding: pw.EdgeInsets.only(top: 0, left: 42),
+                            child: pw.Text(
+                              '17',
+                              style: pw.TextStyle(
+                                color: PdfColors.green900,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                          pw.Padding(
+                            padding: pw.EdgeInsets.only(top: 0, left: 60),
+                            child: pw.Text(
+                              'TON',
+                              style: pw.TextStyle(
+                                color: PdfColors.green900,
+                                fontSize: 16,
+                              ),
+                            ),
+                          )
+                        ])
+                  ])),
+          pw.Padding(
+            padding: pw.EdgeInsets.only(top: 5, left: 0),
+            child: pw.Container(
+              height: 1.0,
+              width: 600.0,
+              color: PdfColors.black,
+            ),
+          ),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 5, left: 0),
+              child: pw.Text(
+                  "Hal-hal lain yang belum tercantum dalam dokumen ini, agar",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 0),
+              child: pw.Text(
+                  "merujuk kepada surat perjanjian antara rekanan dengan ",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 0, left: 0),
+              child: pw.Text("PT. Pupuk Sriwidjaja Palembang.",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 5, left: 0),
+              child: pw.Text("Belum Cut Off",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.green900,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 5, left: 50),
+              child: pw.Text(
+                  "RESTA JAYA \t \t \t \t \t \t PT. Pupuk Sriwidjaja Palembang",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+          pw.Padding(
+              padding: pw.EdgeInsets.only(top: 40, left: 50),
+              child: pw.Text("......................",
+                  style: pw.TextStyle(
+                    fontSize: 16,
+                    fontWeight: pw.FontWeight.normal,
+                    color: PdfColors.black,
+                  ))),
+        ];
+      },
+    ),
+  ); // Page
+
+  // simpan
+  Uint8List bytes = await pdf.save();
+
+  // buat file kosong di direktori
+  final dir = await getApplicationDocumentsDirectory();
+  final file = File('${dir.path}/cetakposto.pdf');
+
+  // timpa file kosong dengan file pdf
+  await file.writeAsBytes(bytes);
+
+  // open pdf
+  await OpenFile.open(file.path);
 }
